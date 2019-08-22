@@ -20,5 +20,5 @@ class DatabaseHandler {
         static int CallbackPrintEdges(
             void* data, int argc, char** argv, char** colname
         );
-        void PrintEdges();
+        std::vector<std::pair<std::pair<int, int>, double>> GetEdges();
 };
