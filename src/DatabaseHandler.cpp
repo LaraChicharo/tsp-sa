@@ -4,7 +4,7 @@
 using namespace std;
 
 
-DatabaseHandler::DatabaseHandler(): DATABASE_FILENAME("tsp.sqlt") {}
+DatabaseHandler::DatabaseHandler(): DATABASE_FILENAME("db/tsp.db") {}
 
 void DatabaseHandler::OpenDatabase() {
     int status = sqlite3_open(DATABASE_FILENAME.c_str(), &db);
