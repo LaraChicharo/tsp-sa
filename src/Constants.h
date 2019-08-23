@@ -1,1 +1,1 @@
-#define MAX_VERTICES 500
+const int MAX_VERTICES = 1500;

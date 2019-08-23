@@ -13,4 +13,5 @@ class Metrologist {
         double GetWs(int v, int u);
         double GetNaturalDist(int v, int u);
         double GetMaxd();
+        double GetNormalizer();
 };
