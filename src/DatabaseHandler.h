@@ -21,4 +21,5 @@ class DatabaseHandler {
             void* data, int argc, char** argv, char** colname
         );
         std::vector<std::pair<std::pair<int, int>, double>> GetEdges();
+        std::pair<double, double> GetCoordinates(int v);
 };

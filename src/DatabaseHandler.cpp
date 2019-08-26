@@ -53,3 +53,36 @@ vector<pair<pair<int, int>, double>> DatabaseHandler::GetEdges() {
      return edges;
 }
 
+pair<double, double> DatabaseHandler::GetCoordinates(int v) {
+    string query_vertice =
+        "SELECT latitude, longitude FROM cities WHERE id = ";
+    query_vertice += (to_string(v) + ";");
+    int length_in_bytes = query_vertice.size();
+    pair<double, double> coordinates;
+    sqlite3_stmt *stmt;
+    int status = sqlite3_prepare_v2(
+        db, query_vertice.c_str(), length_in_bytes, &stmt, NULL
+    );
+    if (status != SQLITE_OK) {
+        cerr << "Error1 reading from database: "
+            << sqlite3_errmsg(db) << endl;
+        sqlite3_finalize(stmt);
+    }
+    status = sqlite3_step(stmt);
+    double lat = sqlite3_column_double(stmt, 0);
+    double lon = sqlite3_column_double(stmt, 1);
+    coordinates = {lat, lon};
+    status = sqlite3_step(stmt);
+    
+    if (status != SQLITE_ROW && status != SQLITE_DONE) {
+        cerr << "Error reading from database: "
+            << sqlite3_errmsg(db) << endl;
+        sqlite3_finalize(stmt);
+    }
+    if (status == SQLITE_DONE) {
+        sqlite3_finalize(stmt);
+    }
+
+    return coordinates;        
+}
+
