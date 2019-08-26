@@ -29,7 +29,19 @@ double Metrologist::GetMaxd() const {
     return maxd;
 }
 
-// Not implemented yet
 double Metrologist::GetNormalizer() const {
-    return 1;
+    double normalizer = 0;
+    vector<double> edges;
+    for (int v : graph->GetVertices()) {
+        for (int u : graph->GetVertices()) {
+            if (v <= u || !graph->EdgeExists(v, u)) continue;
+            edges.push_back(graph->GetEdgeVal(v, u));
+        }
+    }
+    sort(edges.begin(), edges.end(), greater<double>());
+    int end = min<int>(edges.size(), graph->GetNumberOfVertices() - 1);
+    for (int i = 0; i < end; i++) {
+        normalizer += edges[i];
+    }
+    return normalizer;
 }

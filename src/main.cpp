@@ -24,6 +24,8 @@ int main() {
     Graph graph(vertices, edges);
     Metrologist metrologist(&graph);
     double maxd = metrologist.GetMaxd();
+    double normalizer = metrologist.GetNormalizer();
     printf("Maxd: %2.15f\n", maxd);
+    printf("Normalizer: %2.15f\n", normalizer);
     return 0;
 }
