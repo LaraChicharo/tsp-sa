@@ -1,5 +1,5 @@
 #include "DatabaseHandler.h"
-#include "Metrologist.h"
+#include "GraphFiller.h"
 #include <iostream>
 #include <vector>
 
@@ -10,32 +10,28 @@ int main() {
     
     int number_of_cities;
     cin >> number_of_cities;
-    cout << number_of_cities << endl;
-    vector<int> vertices(number_of_cities);
+    vector<int> instance_vertices(number_of_cities);
     for (int i=0; i<number_of_cities; i++) {
         int ai;
         cin >> ai;
-        vertices[i] = ai;
-        cout << ai << endl;
+        instance_vertices[i] = ai;
     }
     
     DatabaseHandler* dbh = new DatabaseHandler();
     dbh->OpenDatabase();
-    vector<pair<pair<int, int>, double>> edges = dbh->GetEdges();
+    vector<pair<pair<int, int>, double>> original_edges = dbh->GetEdges();
     vector<Vertice> all_vertices = dbh->GetVertices();
     dbh->CloseDatabase();
 
-    cout << "Vertices: " << endl;
-    for (Vertice v : all_vertices) {
-        cout << v.GetId() << " " << v.GetPopulation() << endl;
-    }
-    
-    Graph graph(vertices, all_vertices, edges);
+    vector<int> base_vertices;
+    for (int i = 1; i <= all_vertices.size(); i++)
+        base_vertices.push_back(i);
+ 
+    Graph graph(base_vertices, all_vertices, original_edges);
     Metrologist metrologist(&graph);
-    double maxd = metrologist.GetMaxd();
-    double normalizer = metrologist.GetNormalizer();
-    printf("Maxd: %2.15f\n", maxd);
-    printf("Normalizer: %2.15f\n", normalizer);
-    
+
+    GraphFiller graph_builder = GraphFiller();
+    graph_builder.FillGraph(&graph, &metrologist);
+ 
     return 0;
 }

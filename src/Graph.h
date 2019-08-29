@@ -32,22 +32,26 @@ class Graph {
     private:
         std::vector<int> vertices;
         std::vector<Vertice> all_vertices;
+        
+        bool** original_edges_exists;
+        
         double** edges;
         bool** edges_exists;
     public:
         Graph(
             std::vector<int> vertices,
             std::vector<Vertice> all_vertices, 
-            std::vector<std::pair<std::pair<int, int>, double>> edges
+            std::vector<std::pair<std::pair<int, int>, double>> original_edges
         );
         
         ~Graph();        
 
         double GetEdgeVal(int v, int u) const;
         void SetEdgeVal(int v, int u, double val);
-        std::vector<int>GetVertices() const;
+        std::vector<int>GetInstanceVertices() const;
         Vertice GetVertice(int v) const;
         
+        bool OriginalEdgeExists(int v, int u) const;
         bool EdgeExists(int v, int u) const;
         int GetNumberOfVertices() const;
 };

@@ -8,6 +8,10 @@ class Metrologist {
     private:
         Graph* graph;
         double maxd;
+        double normalizer;
+        
+        double CalculateMaxd();
+        double CalculateNormalizer();
 
     public:
         Metrologist(Graph* graph);

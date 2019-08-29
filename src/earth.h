@@ -1,0 +1,1 @@
+#define RADIUS 6373000
