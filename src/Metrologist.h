@@ -1,4 +1,6 @@
-#include "Graph.h"
+#ifndef GRAPH_H
+    #include "Graph.h"
+#endif
 #include <vector>
 
 

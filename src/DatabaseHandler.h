@@ -1,3 +1,6 @@
+#ifndef GRAPH_H
+    #include "Graph.h"
+#endif
 #include <sqlite3.h>
 #include <string>
 #include <vector>
@@ -21,5 +24,5 @@ class DatabaseHandler {
             void* data, int argc, char** argv, char** colname
         );
         std::vector<std::pair<std::pair<int, int>, double>> GetEdges();
-        std::pair<double, double> GetCoordinates(int v);
+        std::vector<Vertice> GetVertices();
 };

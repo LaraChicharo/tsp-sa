@@ -4,10 +4,36 @@
 using namespace std;
 
 
+Vertice::Vertice(
+    int id,
+    double lat,
+    double lon,
+    long long population
+): id(id), lat(lat), lon(lon), population(population) {}
+
+int Vertice::GetId() const {
+    return id;
+}
+
+double Vertice::GetLat() const {
+    return lat;
+}
+
+double Vertice::GetLon() const {
+    return lon;
+}
+
+long long Vertice::GetPopulation() const {
+    return population;
+}
+
+
 Graph::Graph(
-    vector<int> vertices, vector<pair<pair<int, int>, double>> edges
+    vector<int> vertices,
+    vector<Vertice> all_vertices,
+    vector<pair<pair<int, int>, double>> edges
 ):
-    vertices(vertices), edges_adj_list(edges)
+    all_vertices(all_vertices), vertices(vertices)
     {
         this->edges = new double*[MAX_VERTICES];
         this->edges_exists = new bool*[MAX_VERTICES];
@@ -49,12 +75,12 @@ void Graph::SetEdgeVal(int v, int u, double val) {
     edges[v][u] = val;
 }
  
-void Graph::SetVertices(vector<int> vertices) {
-    this->vertices = vertices;
-}
-
 vector<int> Graph::GetVertices() const {
     return vertices;
+}
+
+Vertice Graph::GetVertice(int v) const {
+    return all_vertices[v];
 }
 
 bool Graph::EdgeExists(int v, int u) const {
@@ -64,8 +90,3 @@ bool Graph::EdgeExists(int v, int u) const {
 int Graph::GetNumberOfVertices() const {
     return vertices.size();
 }
-
-vector<pair<pair<int, int>, double>> Graph::GetAdjList() const {
-    return edges_adj_list;
-}
-

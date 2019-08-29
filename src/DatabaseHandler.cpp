@@ -1,5 +1,6 @@
 #include "DatabaseHandler.h"
 #include <iostream>
+#include <string.h>
 
 using namespace std;
 
@@ -53,36 +54,35 @@ vector<pair<pair<int, int>, double>> DatabaseHandler::GetEdges() {
      return edges;
 }
 
-pair<double, double> DatabaseHandler::GetCoordinates(int v) {
-    string query_vertice =
-        "SELECT latitude, longitude FROM cities WHERE id = ";
-    query_vertice += (to_string(v) + ";");
-    int length_in_bytes = query_vertice.size();
-    pair<double, double> coordinates;
+vector<Vertice> DatabaseHandler::GetVertices() {
+    const string QUERY_VERTICES = "SELECT * FROM cities;";
+    int length_in_bytes = QUERY_VERTICES.size();
+    vector<Vertice> vertices;
     sqlite3_stmt *stmt;
     int status = sqlite3_prepare_v2(
-        db, query_vertice.c_str(), length_in_bytes, &stmt, NULL
-    );
+        db, QUERY_VERTICES.c_str(), length_in_bytes, &stmt, NULL);
     if (status != SQLITE_OK) {
-        cerr << "Error1 reading from database: "
-            << sqlite3_errmsg(db) << endl;
-        sqlite3_finalize(stmt);
-    }
-    status = sqlite3_step(stmt);
-    double lat = sqlite3_column_double(stmt, 0);
-    double lon = sqlite3_column_double(stmt, 1);
-    coordinates = {lat, lon};
-    status = sqlite3_step(stmt);
-    
-    if (status != SQLITE_ROW && status != SQLITE_DONE) {
         cerr << "Error reading from database: "
             << sqlite3_errmsg(db) << endl;
         sqlite3_finalize(stmt);
-    }
-    if (status == SQLITE_DONE) {
+     }
+     status = sqlite3_step(stmt);
+     while (status == SQLITE_ROW) {
+        int id = sqlite3_column_int(stmt, 0);
+        long long population = sqlite3_column_int64(stmt, 3);
+        double lat = sqlite3_column_double(stmt, 4);
+        double lon = sqlite3_column_double(stmt, 5);
+        Vertice v(id, lat, lon, population);
+        vertices.push_back(v);
+        status = sqlite3_step(stmt);
+     }
+     if (status != SQLITE_ROW && status != SQLITE_DONE) {
+        cerr << "Error reading from database: "
+            << sqlite3_errmsg(db) << endl;
         sqlite3_finalize(stmt);
-    }
-
-    return coordinates;        
+     }
+     if (status == SQLITE_DONE) {
+        sqlite3_finalize(stmt);
+     }
+     return vertices;
 }
-

@@ -2,6 +2,7 @@
 #include <functional>
 #include <algorithm>
 #include <iostream>
+#include <cmath>
 using namespace std;
 
 
@@ -13,9 +14,19 @@ double Metrologist::GetWs(int v, int u) const {
     return natural_dist * maxd;
 }
 
-// Not implemented yet
+// Not fully implemented yet
 double Metrologist::GetNaturalDist(int v, int u) const {
-    return 1;
+    const int RADIUS = 1; // Not the final value
+    
+    double latv = 1;
+    double latu = 1;
+    double lonv = 1;
+    double lonu = 1;
+    double A = pow(sin((latv - latu) / 2), 2) +
+        cos(latu) * pow(cos(latv) * sin((lonv - lonu) / 2), 2);
+    double C = 2 * atan2(sqrt(A), sqrt(1 - A));
+    double nat_dist = C * RADIUS;
+    return nat_dist;
 }
 
 double Metrologist::GetMaxd() const {
