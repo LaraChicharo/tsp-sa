@@ -23,15 +23,13 @@ int main() {
     vector<Vertice> all_vertices = dbh->GetVertices();
     dbh->CloseDatabase();
 
-    vector<int> base_vertices;
-    for (int i = 1; i <= all_vertices.size(); i++)
-        base_vertices.push_back(i);
- 
-    Graph graph(base_vertices, all_vertices, original_edges);
+    Graph graph(instance_vertices, all_vertices, original_edges);
     Metrologist metrologist(&graph);
 
     GraphFiller graph_builder = GraphFiller();
     graph_builder.FillGraph(&graph, &metrologist);
  
+    double cost = metrologist.GetCost();
+    printf("%2.15f\n", cost);
     return 0;
 }

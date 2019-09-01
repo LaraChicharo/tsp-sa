@@ -12,6 +12,7 @@ class Metrologist {
         
         double CalculateMaxd();
         double CalculateNormalizer();
+        double DegreesToRadians(double degrees) const;
 
     public:
         Metrologist(Graph* graph);
@@ -20,4 +21,5 @@ class Metrologist {
         double GetNaturalDist(int v, int u) const;
         double GetMaxd() const;
         double GetNormalizer() const;
+        double GetCost() const;
 };

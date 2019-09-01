@@ -33,8 +33,13 @@ Graph::Graph(
     vector<Vertice> all_vertices,
     vector<pair<pair<int, int>, double>> original_edges
 ):
-    all_vertices(all_vertices), vertices(vertices)
+    vertices(vertices)
     {
+        this->all_vertices.push_back(Vertice(0, 0, 0, 0));
+        for (Vertice v : all_vertices) {
+            this->all_vertices.push_back(v);
+        }
+
         this->original_edges_exists = new bool*[MAX_VERTICES];
         
         this->edges = new double*[MAX_VERTICES];
@@ -86,6 +91,7 @@ double Graph::GetEdgeVal(int v, int u) const {
 
 void Graph::SetEdgeVal(int v, int u, double val) {
     edges[v][u] = val;
+    edges_exists[v][u] = true; 
 }
  
 vector<int> Graph::GetInstanceVertices() const {

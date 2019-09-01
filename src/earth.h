@@ -1,1 +1,1 @@
-#define RADIUS 6373000
+#define EARTH_RADIUS 6373000
