@@ -28,8 +28,11 @@ int main() {
 
     GraphFiller graph_builder = GraphFiller();
     graph_builder.FillGraph(&graph, &metrologist);
+
+    vector<int> sequence (instance_vertices);
+    Solution solution(sequence); 
  
-    double cost = metrologist.GetCost();
+    double cost = metrologist.GetCost(solution);
     printf("%2.15f\n", cost);
     return 0;
 }

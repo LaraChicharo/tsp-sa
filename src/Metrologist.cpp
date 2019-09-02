@@ -1,5 +1,4 @@
 #include "Metrologist.h"
-#include "earth.h"
 #include <functional>
 #include <algorithm>
 #include <iostream>
@@ -74,12 +73,12 @@ double Metrologist::GetNormalizer() const {
     return normalizer;
 }
 
-double Metrologist::GetCost() const {
+double Metrologist::GetCost(Solution solution) const {
     double cost = 0;
-    vector<int> instance_vertices = graph->GetInstanceVertices();
+    vector<int> sequence = solution.GetSequence();
     for (int i = 0; i < graph->GetNumberOfVertices() - 1; i++) {
-        int v = instance_vertices[i];
-        int u = instance_vertices[i + 1];
+        int v = sequence[i];
+        int u = sequence[i + 1];
         cost += GetWs(v, u);
     }
     cost /= GetNormalizer();
