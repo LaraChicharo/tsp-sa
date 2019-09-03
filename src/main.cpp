@@ -3,6 +3,7 @@
 #include "Solution.h"
 #include <iostream>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -30,17 +31,29 @@ int main() {
     GraphFiller graph_builder = GraphFiller();
     graph_builder.FillGraph(&graph, &metrologist);
 
-    srand(666);
+    srand(13);
     vector<int> sequence (instance_vertices);
     Solution solution(sequence, &metrologist); 
+    
+    printf("original cost: %2.15f\n", solution.GetCost());
  
+    solution = solution.GetNeighbour();
+    Solution solution_twin = Solution(
+        solution.GetSequence(), &metrologist
+    );
+    double cost = solution.GetCost();
+    double cost_twin = solution_twin.GetCost();
+    printf("cost: %2.15f\n", cost);
+    printf("cost twin: %2.15f\n", cost_twin);
 
-    int z = 0;
-    while (z++ < 5) {
-        double cost = solution.GetCost();
-        solution.Print();
-        printf("cost: %2.15f\n", cost);
-        solution = solution.GetNeighbour();
+    double treshold = 1e-7;
+    if (abs(cost - cost_twin) <= treshold) {
+       cout <<
+        "Cost functions are close enough" << endl;
+    } else {
+       cout << "Cost functions are NOT close enough" << endl;
+       printf("Diff: %2.15f\n", cost - cost_twin);
     }
+    
     return 0;
 }

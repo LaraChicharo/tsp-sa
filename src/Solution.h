@@ -10,12 +10,17 @@
 class AncestryData {
     private:
         double parent_cost;
+        double parent_sum;
         std::pair<int, int> swaped_indexes;
 
     public:
-        AncestryData(double parent_cost, std::pair<int, int> swaped_indexes);
+        AncestryData(
+            double parent_cost,
+            double parent_sum,
+            std::pair<int, int> swaped_indexes);
 
         double GetParentCost();
+        double GetParentSum();
         std::pair<int, int> GetSwapedIndexes();
 };
 
@@ -26,9 +31,12 @@ class Solution {
         AncestryData* ancestry;
         std::vector<int> sequence;
         double cost;
+        double ssum;
         
-        double CalculateCost(std::vector<int> sequence);
-        double CalculateCost(std::vector<int> sequence, AncestryData* ancestry);
+        double CalculateCost(double ssum);
+        
+        double CalculateSum(std::vector<int> sequence);
+        double CalculateSum(std::vector<int> sequence, AncestryData* ancestry);
 
     public:
         Solution(std::vector<int> sequence, Metrologist* metrologist);
@@ -41,5 +49,6 @@ class Solution {
         std::vector<int> GetSequence();
         Solution GetNeighbour();
         double GetCost();
+        double GetSum();
         void Print();
 };
