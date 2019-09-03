@@ -1,9 +1,9 @@
 #ifndef GRAPH_H
     #include "Graph.h"
 #endif
-#include "Solution.h"
 #include "earth.h"
 
+#define METROLOGIST_H
 
 
 class Metrologist {
@@ -23,5 +23,5 @@ class Metrologist {
         double GetNaturalDist(int v, int u) const;
         double GetMaxd() const;
         double GetNormalizer() const;
-        double GetCost(Solution solution) const;
+        // double GetCost(Solution solution) const;
 };

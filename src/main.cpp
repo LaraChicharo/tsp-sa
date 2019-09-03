@@ -1,5 +1,6 @@
 #include "DatabaseHandler.h"
 #include "GraphFiller.h"
+#include "Solution.h"
 #include <iostream>
 #include <vector>
 
@@ -29,10 +30,17 @@ int main() {
     GraphFiller graph_builder = GraphFiller();
     graph_builder.FillGraph(&graph, &metrologist);
 
+    srand(666);
     vector<int> sequence (instance_vertices);
-    Solution solution(sequence); 
+    Solution solution(sequence, &metrologist); 
  
-    double cost = metrologist.GetCost(solution);
-    printf("%2.15f\n", cost);
+
+    int z = 0;
+    while (z++ < 5) {
+        double cost = solution.GetCost();
+        solution.Print();
+        printf("cost: %2.15f\n", cost);
+        solution = solution.GetNeighbour();
+    }
     return 0;
 }

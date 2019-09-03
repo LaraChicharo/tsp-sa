@@ -73,7 +73,7 @@ double Metrologist::GetNormalizer() const {
     return normalizer;
 }
 
-double Metrologist::GetCost(Solution solution) const {
+/*double Metrologist::GetCost(Solution solution) const {
     double cost = 0;
     vector<int> sequence = solution.GetSequence();
     for (int i = 0; i < graph->GetNumberOfVertices() - 1; i++) {
@@ -83,4 +83,4 @@ double Metrologist::GetCost(Solution solution) const {
     }
     cost /= GetNormalizer();
     return cost;
-}
+}*/
