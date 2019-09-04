@@ -1,6 +1,7 @@
 #include "DatabaseHandler.h"
 #include "GraphFiller.h"
 #include "Solution.h"
+#include "Reader.h"
 #include <iostream>
 #include <vector>
 #include <cmath>
@@ -8,17 +9,11 @@
 using namespace std;
 
 
-int main() {
-    
-    int number_of_cities;
-    cin >> number_of_cities;
-    vector<int> instance_vertices(number_of_cities);
-    for (int i=0; i<number_of_cities; i++) {
-        int ai;
-        cin >> ai;
-        instance_vertices[i] = ai;
-    }
-    
+int main(int argc, char** argv) {
+
+    Reader reader(argc, argv);
+    vector<int> instance_vertices = reader.GetInstanceVertices();
+     
     DatabaseHandler* dbh = new DatabaseHandler();
     dbh->OpenDatabase();
     vector<pair<pair<int, int>, double>> original_edges = dbh->GetEdges();
