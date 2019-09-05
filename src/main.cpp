@@ -11,15 +11,13 @@ using namespace std;
 
 int main(int argc, char** argv) {
 
-    Reader reader(argc, argv);
-    vector<int> instance_vertices = reader.GetInstanceVertices();
+    Reader* reader = new Reader();
+    vector<int> instance_vertices = reader->GetInstanceVertices();
      
-    DatabaseHandler* dbh = new DatabaseHandler();
-    dbh->OpenDatabase();
-    vector<pair<pair<int, int>, double>> original_edges = dbh->GetEdges();
-    vector<Vertice> all_vertices = dbh->GetVertices();
-    dbh->CloseDatabase();
+    vector<pair<pair<int, int>, double>>
+        original_edges = reader->GetOriginalEdges();
 
+    vector<Vertice> all_vertices = reader->GetAllVertices();
     Graph graph(instance_vertices, all_vertices, original_edges);
     Metrologist metrologist(&graph);
 
