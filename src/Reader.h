@@ -1,10 +1,10 @@
 #ifndef GRAPH_H
     #include "Graph.h"
 #endif
-
 #include <iostream>
 #include <vector>
 
+#define READER_H
 
 class ArgumentsReader {
     private:

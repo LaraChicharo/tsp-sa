@@ -1,8 +1,8 @@
 SRC_DIR = src
 
 
-main: DatabaseHandler.o Graph.o Metrologist.o GraphFiller.o Solution.o Reader.o $(SRC_DIR)/main.cpp
-	g++ $(SRC_DIR)/main.cpp DatabaseHandler.o Graph.o Metrologist.o Solution.o Reader.o GraphFiller.o -l sqlite3 -o main
+main: DatabaseHandler.o Graph.o Metrologist.o GraphFiller.o Solution.o Reader.o WorldBuilder.o $(SRC_DIR)/main.cpp
+	g++ $(SRC_DIR)/main.cpp DatabaseHandler.o Graph.o Metrologist.o Solution.o WorldBuilder.o Reader.o GraphFiller.o -l sqlite3 -o main
 
 DatabaseHandler.o: $(SRC_DIR)/DatabaseHandler.h $(SRC_DIR)/DatabaseHandler.cpp  $(SRC_DIR)/Constants.h
 	g++ -c $(SRC_DIR)/DatabaseHandler.cpp
@@ -21,6 +21,9 @@ Solution.o: $(SRC_DIR)/Solution.cpp $(SRC_DIR)/Solution.h $(SRC_DIR)/Metrologist
 
 Reader.o: $(SRC_DIR)/Reader.cpp $(SRC_DIR)/Reader.h
 	g++ -c $(SRC_DIR)/Reader.cpp
+
+WorldBuilder.o: $(SRC_DIR)/WorldBuilder.cpp $(SRC_DIR)/WorldBuilder.h
+	g++ -c $(SRC_DIR)/WorldBuilder.cpp
 
 clean:
 	rm -f main *.o *.ghc
