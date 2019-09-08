@@ -1,5 +1,4 @@
 #include "Graph.h"
-#include <iostream>
 
 using namespace std;
 
@@ -50,7 +49,7 @@ Graph::Graph(
             this->edges[i] = new double[MAX_VERTICES];
             this->edges_exists[i] = new bool[MAX_VERTICES];
         
-            for (int j=0; j<MAX_VERTICES; j++) {
+            for (int j = 0; j < MAX_VERTICES; j++) {
                 this->original_edges_exists[i][j] = false;
                 
                 this->edges[i][j] = 0;
@@ -64,8 +63,8 @@ Graph::Graph(
             this->edges[e.first.second][e.first.first] = e.second;
         }
         for (pair<pair<int, int>, double> e : original_edges) {
-            original_edges_exists[e.first.first][e.first.second] = true;
-            original_edges_exists[e.first.second][e.first.first] = true;
+            this->original_edges_exists[e.first.first][e.first.second] = true;
+            this->original_edges_exists[e.first.second][e.first.first] = true;
             
             edges_exists[e.first.first][e.first.second] = true;
             edges_exists[e.first.second][e.first.first] = true;
@@ -73,6 +72,7 @@ Graph::Graph(
     }
 
 Graph::~Graph() {
+    printf("freeing graph");
     for (int i = 0; i < MAX_VERTICES; i++) {
         delete [] original_edges_exists[i];
         
@@ -107,7 +107,7 @@ bool Graph::EdgeExists(int v, int u) const {
 }
 
 bool Graph::OriginalEdgeExists(int v, int u) const {
-    return original_edges_exists[v][u];
+    return this->original_edges_exists[v][u];
 }
 
 int Graph::GetNumberOfVertices() const {

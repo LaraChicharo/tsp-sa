@@ -8,11 +8,13 @@
 
 class ArgumentsReader {
     private:
+        int instance_size;
         std::vector<int> instance_vertices;
 
     public:
         ArgumentsReader();
         std::vector<int> GetInstanceVertices() const;
+        int GetInstanceSize() const;
 };
 
 
@@ -41,6 +43,7 @@ class Reader {
 
         // ArgumentsReader attributes        
         std::vector<int> GetInstanceVertices() const;
+        int GetInstanceSize() const;
         
         // DatabaseReader attributes
         std::vector<std::pair<std::pair<int, int>, double>>

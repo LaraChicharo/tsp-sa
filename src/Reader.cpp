@@ -6,9 +6,8 @@ using namespace std;
 
 
 ArgumentsReader::ArgumentsReader() {
-    int number_of_cities;
-    cin >> number_of_cities;
-    for (int i = 0; i < number_of_cities; i++) {
+    cin >> instance_size;
+    for (int i = 0; i < instance_size; i++) {
         int ai;
         cin >> ai;
         instance_vertices.push_back(ai);
@@ -17,6 +16,10 @@ ArgumentsReader::ArgumentsReader() {
 
 vector<int> ArgumentsReader::GetInstanceVertices() const {
     return instance_vertices;
+}
+
+int ArgumentsReader::GetInstanceSize() const {
+    return instance_size;
 }
 
  
@@ -42,6 +45,10 @@ Reader::Reader() {}
 // ArgimentReader atrributes
 vector<int> Reader::GetInstanceVertices() const {
     return arguments_reader.GetInstanceVertices();
+}
+
+int Reader::GetInstanceSize() const {
+    return arguments_reader.GetInstanceSize();
 }
 
 // DatabaseReader attributes

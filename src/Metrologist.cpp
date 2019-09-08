@@ -19,13 +19,16 @@ double Metrologist::DegreesToRadians(double degrees) const {
 
 double Metrologist::GetWs(int v, int u) const {
     if (v == u) return 0;
-    if (graph->OriginalEdgeExists(v, u)) return graph->GetEdgeVal(v, u);
+    if (graph->OriginalEdgeExists(v, u)) {
+        return graph->GetEdgeVal(v, u);
+    }
     double natural_dist = GetNaturalDist(v, u);
     double ws = natural_dist * maxd;
     return ws;
 }
 
 double Metrologist::GetNaturalDist(int v, int u) const {
+    graph->GetVertice(v);
     double latv = this->DegreesToRadians(graph->GetVertice(v).GetLat());
     double latu = this->DegreesToRadians(graph->GetVertice(u).GetLat());
     double lonv = this->DegreesToRadians(graph->GetVertice(v).GetLon());

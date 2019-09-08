@@ -73,6 +73,7 @@ double Solution::CalculateSum(
     int veri = parent_sequence[i];
     int verj = parent_sequence[j];
     int size = sequence.size();
+
      
     if (i - 1 >= 0)
         ssum -= metrologist->GetWs(veri, parent_sequence[i - 1]);
@@ -85,6 +86,7 @@ double Solution::CalculateSum(
 
     if (abs(i - j) == 1)
         ssum += metrologist->GetWs(veri, verj);
+    
     
     veri = sequence[i];
     verj = sequence[j];
@@ -134,21 +136,7 @@ double Solution::GetSum() {
 }
 
 void Solution::Print() {
-    int i;
-    int j;
-    if (ancestry != nullptr) {
-        pair<int, int> swaped_indexes = ancestry->GetSwapedIndexes();
-        i = swaped_indexes.first;
-        j = swaped_indexes.second;
-    } else {
-        i = -1;
-        j = -1;
-    }
-    for (int z=0; z<sequence.size(); z++) {
-        if (z == i || z == j )
-            cout << " swaped: " << sequence[z] << " ";
-        else
-            cout << sequence[z] << " ";
-    }
-    cout << endl;
+    for (int z=0; z<sequence.size(); z++)
+            printf("%d ", sequence[z]);
+    printf("\n");
 }
