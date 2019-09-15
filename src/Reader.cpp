@@ -16,6 +16,17 @@ ArgumentsReader::ArgumentsReader() {
         instance_vertices.push_back(ai);
     }
     first_sequence_file.close();
+    
+    ifstream seeds_file;
+    seeds_file.open("samples/seeds.txt");
+    int runs;
+    seeds_file >> runs;
+    for (int i=0; i<runs; i++) {
+        int seedi;
+        seeds_file >> seedi;
+        seeds.push_back(seedi);
+    }
+    seeds_file.close();
 }
 
 vector<int> ArgumentsReader::GetInstanceVertices() const {
@@ -24,6 +35,14 @@ vector<int> ArgumentsReader::GetInstanceVertices() const {
 
 int ArgumentsReader::GetInstanceSize() const {
     return instance_size;
+}
+
+int ArgumentsReader::GetRuns() const {
+    return runs;
+}
+
+vector<int> ArgumentsReader::GetSeeds() const {
+    return seeds;
 }
 
  
@@ -53,6 +72,14 @@ vector<int> Reader::GetInstanceVertices() const {
 
 int Reader::GetInstanceSize() const {
     return arguments_reader.GetInstanceSize();
+}
+
+int Reader::GetRuns() const {
+    return arguments_reader.GetRuns();
+}
+
+vector<int> Reader::GetSeeds() const {
+    return arguments_reader.GetSeeds();
 }
 
 // DatabaseReader attributes
