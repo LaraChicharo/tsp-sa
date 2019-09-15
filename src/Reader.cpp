@@ -1,17 +1,21 @@
 #include "DatabaseHandler.h"
-#include <iostream>
 #include "Reader.h"
+#include <iostream>
+#include <fstream>
 
 using namespace std;
 
 
 ArgumentsReader::ArgumentsReader() {
-    cin >> instance_size;
+    ifstream first_sequence_file;
+    first_sequence_file.open("samples/40.txt");
+    first_sequence_file >> instance_size;
     for (int i = 0; i < instance_size; i++) {
         int ai;
-        cin >> ai;
+        first_sequence_file >> ai;
         instance_vertices.push_back(ai);
     }
+    first_sequence_file.close();
 }
 
 vector<int> ArgumentsReader::GetInstanceVertices() const {
