@@ -4,23 +4,20 @@ using namespace std;
 
 
 WorldBuilder::WorldBuilder(Reader* reader): reader(reader) {
-    srand(13);
-}
-
-Solution WorldBuilder::BuildFirstSolution() const {
-    vector<int> instance_vertices = reader->GetInstanceVertices();
+    first_sequence = reader->GetInstanceVertices();
     vector<pair<pair<int, int>, double>>
         original_edges = reader->GetOriginalEdges();
 
     vector<Vertice> all_vertices = reader->GetAllVertices();
-    Graph* graph = new Graph(instance_vertices, all_vertices, original_edges);
-    Metrologist* metrologist = new Metrologist(graph);
+    graph = new Graph(first_sequence, all_vertices, original_edges);
+    metrologist = new Metrologist(graph);
 
-    GraphFiller graph_builder = GraphFiller();
-    graph_builder.FillGraph(graph, metrologist);
+    graph_builder = new GraphFiller();
+    graph_builder->FillGraph(graph, metrologist);
+}
 
-    vector<int> sequence (instance_vertices);
-    Solution first_solution(sequence, metrologist);
+Solution WorldBuilder::BuildFirstSolution() const {
+    Solution first_solution(first_sequence, metrologist);
     return first_solution;
 }
 
@@ -38,7 +35,6 @@ Temperature WorldBuilder::BuildTemperature(Solution solution) const {
 
 SimulatedAnnealing WorldBuilder::BuildSimulatedAnnealing() const {
     Solution solution = BuildFirstSolution();
-    printf("Cost: %f\n", solution.GetCost());
     Temperature temperature = BuildTemperature(solution);
     SimulatedAnnealing simannealing(temperature, solution, 1000);
     return simannealing;

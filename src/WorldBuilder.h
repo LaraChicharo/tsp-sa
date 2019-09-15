@@ -10,7 +10,11 @@
 
 class WorldBuilder {
     private:
+        std::vector<int> first_sequence;
         Reader* reader;
+        Graph* graph;
+        Metrologist* metrologist;
+        GraphFiller* graph_builder;
 
         Temperature BuildTemperature(Solution sol) const;
 
