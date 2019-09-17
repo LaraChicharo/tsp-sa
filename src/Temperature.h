@@ -14,17 +14,17 @@ class Temperature {
         int instance_size;
         double decrease_rate;
         
-        double BinarySearch(Solution solution, double T1, double T2, double P);
-        double AcceptedPercentage(Solution solution, double temp);
+        double BinarySearch(Solution* solution, double T1, double T2, double P);
+        double AcceptedPercentage(Solution* solution, double temp);
         double InitialTemperature(
-            Solution solution,
+            Solution* solution,
             double initial_temp,
             double P
         );
 
     public:
         Temperature(
-            Solution solution,
+            Solution* solution,
             double initial_temp,
             double P,
             double virtual_zero,

@@ -16,25 +16,25 @@ WorldBuilder::WorldBuilder(Reader* reader): reader(reader) {
     graph_builder->FillGraph(graph, metrologist);
 }
 
-Solution WorldBuilder::BuildFirstSolution() const {
-    Solution first_solution(first_sequence, metrologist);
+Solution* WorldBuilder::BuildFirstSolution() const {
+    Solution* first_solution = new Solution(first_sequence, metrologist);
     return first_solution;
 }
 
-Temperature WorldBuilder::BuildTemperature(Solution solution) const {
+Temperature WorldBuilder::BuildTemperature(Solution* solution) const {
     Temperature temperature(
         solution,
         1000,
         .80,
         1e-4,
         reader->GetInstanceSize(),
-        .7
+        .89
     );
     return temperature;
 }
 
 SimulatedAnnealing WorldBuilder::BuildSimulatedAnnealing() const {
-    Solution solution = BuildFirstSolution();
+    Solution* solution = BuildFirstSolution();
     Temperature temperature = BuildTemperature(solution);
     SimulatedAnnealing simannealing(temperature, solution, 1000);
     return simannealing;

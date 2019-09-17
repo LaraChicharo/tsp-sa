@@ -4,22 +4,24 @@ using namespace std;
 
 
 Temperature::Temperature(
-    Solution solution,
+    Solution* solution,
     double initial_temp,
     double P,
     double virtual_zero,
     int instance_size,
     double decrease_rate
 ):
-        virtual_zero(virtual_zero),
-        instance_size(instance_size),
-        decrease_rate(decrease_rate)
+    virtual_zero(virtual_zero),
+    instance_size(instance_size),
+    decrease_rate(decrease_rate)
 {
-    temperature = InitialTemperature(solution, initial_temp, P);
+    Solution* tempsol = new Solution(solution);
+    temperature = InitialTemperature(tempsol, initial_temp, P);
+    delete tempsol;
 }
 
 double Temperature::InitialTemperature(
-    Solution solution,
+    Solution* solution,
     double initial_temp,
     double P
 ) {
@@ -47,7 +49,7 @@ double Temperature::InitialTemperature(
 }
 
 double Temperature::BinarySearch(
-    Solution solution, double T1, double T2, double P
+    Solution* solution, double T1, double T2, double P
 ) {
     double Tm = (T1 + T2)/2;
     if (T2 - T1 < virtual_zero)
@@ -62,16 +64,16 @@ double Temperature::BinarySearch(
         return BinarySearch(solution, Tm, T2, P);
 }
 
-double Temperature::AcceptedPercentage(Solution solution, double temp) {
+double Temperature::AcceptedPercentage(Solution* solution, double temp) {
     int c = 0;
     for (int i = 1; i <= instance_size; i++) {
-        Solution new_solution = solution.GetNeighbour();
-        double new_cost = new_solution.GetCost();
-        double cost = solution.GetCost();
-        if (new_cost <= cost + temp) {
+        double cost = solution->GetCost();
+        solution->MorphIntoNeighbour();
+        double new_cost = solution->GetCost();
+        if (new_cost <= cost + temp)
             c++;
-            solution = new_solution;
-        }
+        else
+            solution->MorphBack();
     }
     double ans = ((double)c / instance_size);
     return ans;

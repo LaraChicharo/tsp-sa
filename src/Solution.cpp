@@ -34,15 +34,20 @@ Solution::Solution(vector<int> sequence, Metrologist* metrologist):
     this->cost = CalculateCost(this->ssum);
 }
 
-Solution::Solution(
-    vector<int> sequence,
-    AncestryData* ancestry,
-    Metrologist* metrologist
-):
-    sequence(sequence), ancestry(ancestry), metrologist(metrologist)
-{
-    this->ssum = CalculateSum(sequence, ancestry);
-    this->cost = CalculateCost(this->ssum);
+Solution::Solution(Solution* solution) {
+    metrologist = solution->GetMetrologist();
+    sequence = solution->GetSequence();
+    ancestry = solution->GetAncestry();
+    ssum = CalculateSum(sequence);
+    cost = CalculateCost(ssum);
+}
+
+AncestryData* Solution::GetAncestry() {
+    return ancestry;
+}
+
+Metrologist* Solution::GetMetrologist() {
+    return metrologist;
 }
 
 double Solution::CalculateCost(double ssum) {
@@ -108,8 +113,13 @@ vector<int> Solution::GetSequence() {
     return sequence;
 }
 
-Solution Solution::GetNeighbour() {
-    vector<int> sequence = GetSequence();
+void Solution::SetCost(vector<int> sequence, AncestryData* ancestry) {
+    ssum = CalculateSum(sequence, ancestry);
+    cost = CalculateCost(ssum);
+}
+
+void Solution::MorphIntoNeighbour() {
+    sequence = GetSequence();
     int size = sequence.size();
     int i, j;
     i = j = 0;
@@ -119,13 +129,30 @@ Solution Solution::GetNeighbour() {
     }
     swap(sequence[i], sequence[j]);
     pair<int, int> swaped_indexes = {i, j};
-    AncestryData* ancestry = new AncestryData(
+    delete ancestry;
+    ancestry = new AncestryData(
         GetCost(),
         GetSum(),
         swaped_indexes);
-    Solution neighbour_solution(sequence, ancestry, metrologist);
-    return neighbour_solution;
+    SetCost(sequence, ancestry);
 }
+
+void Solution::MorphBack() {
+    if (ancestry == nullptr) {
+        printf("Imposible to morph solution back\n");
+    }
+    pair<int, int> swaped_indexes = ancestry->GetSwapedIndexes();
+    swap(sequence[swaped_indexes.first], sequence[swaped_indexes.second]);
+    delete ancestry;
+    ancestry = new AncestryData(
+        GetCost(),
+        GetSum(),
+        swaped_indexes
+    );
+    SetCost(sequence, ancestry);
+}
+
+
 
 double Solution::GetCost() {
     return cost;

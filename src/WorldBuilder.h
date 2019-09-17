@@ -16,10 +16,10 @@ class WorldBuilder {
         Metrologist* metrologist;
         GraphFiller* graph_builder;
 
-        Temperature BuildTemperature(Solution sol) const;
+        Temperature BuildTemperature(Solution* solution) const;
 
     public:
         WorldBuilder(Reader* reader);
         SimulatedAnnealing BuildSimulatedAnnealing() const;
-        Solution BuildFirstSolution() const;
+        Solution* BuildFirstSolution() const;
 };

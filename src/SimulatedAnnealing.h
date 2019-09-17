@@ -10,14 +10,14 @@
 class SimulatedAnnealing {
     private:
         Temperature temperature;
-        Solution initial_solution;
+        Solution* initial_solution;
         int L;
 
     public:
         SimulatedAnnealing(
-            Temperature temperature, Solution initial_solution, int L
+            Temperature temperature, Solution* initial_solution, int L
         );
 
-        Solution TresholdAccepting();
-        std::pair<double, Solution> ComputeBatch(Solution solution);
+        Solution* TresholdAccepting();
+        std::pair<double, Solution*> ComputeBatch(Solution* solution);
 };

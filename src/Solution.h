@@ -37,17 +37,17 @@ class Solution {
         
         double CalculateSum(std::vector<int> sequence);
         double CalculateSum(std::vector<int> sequence, AncestryData* ancestry);
+        void SetCost(std::vector<int> sequence, AncestryData* ancestry);
+        AncestryData* GetAncestry();
+        Metrologist* GetMetrologist();
 
     public:
         Solution(std::vector<int> sequence, Metrologist* metrologist);
-        Solution(
-            std::vector<int> sequence,
-            AncestryData* ancestry,
-            Metrologist* metrologist
-        );
+        Solution(Solution* solution);
 
         std::vector<int> GetSequence();
-        Solution GetNeighbour();
+        void MorphIntoNeighbour();
+        void MorphBack();
         double GetCost();
         double GetSum();
         void Print();
