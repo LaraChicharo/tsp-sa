@@ -113,12 +113,19 @@ vector<int> Solution::GetSequence() {
     return sequence;
 }
 
-void Solution::SetCost(vector<int>& sequence, AncestryData* ancestry) {
-    ssum = CalculateSum(sequence, ancestry);
+void Solution::SetCost(
+    vector<int>& sequence,
+    AncestryData* ancestry,
+    bool calculate_everything
+) {
+    if (calculate_everything)
+        ssum = CalculateSum(sequence);
+    else
+        ssum = CalculateSum(sequence, ancestry);
     cost = CalculateCost(ssum);
 }
 
-void Solution::MorphIntoNeighbour() {
+void Solution::MorphIntoNeighbour(bool calculate_everything) {
     sequence = GetSequence();
     int size = sequence.size();
     int i, j;

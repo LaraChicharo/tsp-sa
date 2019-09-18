@@ -37,7 +37,11 @@ class Solution {
         
         double CalculateSum(std::vector<int>& sequence);
         double CalculateSum(std::vector<int>& sequence, AncestryData* ancestry);
-        void SetCost(std::vector<int>& sequence, AncestryData* ancestry);
+        void SetCost(
+            std::vector<int>& sequence,
+            AncestryData* ancestry,
+            bool calculate_everything = true
+        );
         AncestryData* GetAncestry();
         Metrologist* GetMetrologist();
 
@@ -46,7 +50,7 @@ class Solution {
         Solution(Solution* solution);
 
         std::vector<int> GetSequence();
-        void MorphIntoNeighbour();
+        void MorphIntoNeighbour(bool calculate_everything = true);
         void MorphBack();
         double GetCost();
         double GetSum();
