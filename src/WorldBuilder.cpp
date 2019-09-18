@@ -28,7 +28,7 @@ Temperature WorldBuilder::BuildTemperature(Solution* solution) const {
         .80,
         1e-4,
         reader->GetInstanceSize(),
-        .89
+        .95
     );
     return temperature;
 }

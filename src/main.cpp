@@ -16,8 +16,17 @@ int main(int argc, char** argv) {
     WorldBuilder world_builder(reader);
     
     vector<int> seeds = reader->GetSeeds();
-    Solution* solution = world_builder.BuildFirstSolution();
-
+    for (int seed : seeds) {
+        srand(seed);
+        SimulatedAnnealing simannealing =
+            world_builder.BuildSimulatedAnnealing();
+        Solution* best_solution = simannealing.TresholdAccepting();
+        printf("Best solution for seed: %d cost: %2.15f\n",
+            seed, best_solution->GetCost());
+        best_solution->Print();
+        delete best_solution;
+        cout << " ---- " << endl;
+    }
  
     return 0;
 }
