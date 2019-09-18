@@ -30,7 +30,7 @@ Solution::Solution(vector<int> sequence, Metrologist* metrologist):
     sequence(sequence), metrologist(metrologist)
 {
     this->ancestry = nullptr;
-    this->ssum = CalculateSum(sequence);
+    this->ssum = CalculateSum(this->sequence);
     this->cost = CalculateCost(this->ssum);
 }
 
@@ -54,7 +54,7 @@ double Solution::CalculateCost(double ssum) {
     return (ssum / metrologist->GetNormalizer());
 }
 
-double Solution::CalculateSum(vector<int> sequence) {
+double Solution::CalculateSum(vector<int>& sequence) {
     double ssum = 0;
     for (int i = 0; i < sequence.size() - 1; i++) {
         int v = sequence[i];
@@ -65,7 +65,7 @@ double Solution::CalculateSum(vector<int> sequence) {
 }
 
 double Solution::CalculateSum(
-    vector<int> sequence, AncestryData* ancestry)
+    vector<int>& sequence, AncestryData* ancestry)
 {
     double ssum = ancestry->GetParentSum();
     vector<int> parent_sequence (sequence);
@@ -113,7 +113,7 @@ vector<int> Solution::GetSequence() {
     return sequence;
 }
 
-void Solution::SetCost(vector<int> sequence, AncestryData* ancestry) {
+void Solution::SetCost(vector<int>& sequence, AncestryData* ancestry) {
     ssum = CalculateSum(sequence, ancestry);
     cost = CalculateCost(ssum);
 }

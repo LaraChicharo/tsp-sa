@@ -35,9 +35,9 @@ class Solution {
         
         double CalculateCost(double ssum);
         
-        double CalculateSum(std::vector<int> sequence);
-        double CalculateSum(std::vector<int> sequence, AncestryData* ancestry);
-        void SetCost(std::vector<int> sequence, AncestryData* ancestry);
+        double CalculateSum(std::vector<int>& sequence);
+        double CalculateSum(std::vector<int>& sequence, AncestryData* ancestry);
+        void SetCost(std::vector<int>& sequence, AncestryData* ancestry);
         AncestryData* GetAncestry();
         Metrologist* GetMetrologist();
 
