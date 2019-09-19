@@ -24,11 +24,11 @@ Solution* WorldBuilder::BuildFirstSolution() const {
 Temperature WorldBuilder::BuildTemperature(Solution* solution) const {
     Temperature temperature(
         solution,
-        1000,
-        .80,
-        1e-4,
+        INITIAL_TEMPERATURE,
+        P,
+        EPSILON,
         reader->GetInstanceSize(),
-        .95
+        TEMPERATURE_DECAY
     );
     return temperature;
 }
@@ -36,6 +36,6 @@ Temperature WorldBuilder::BuildTemperature(Solution* solution) const {
 SimulatedAnnealing WorldBuilder::BuildSimulatedAnnealing() const {
     Solution* solution = BuildFirstSolution();
     Temperature temperature = BuildTemperature(solution);
-    SimulatedAnnealing simannealing(temperature, solution, 1000);
+    SimulatedAnnealing simannealing(temperature, solution, L);
     return simannealing;
 }

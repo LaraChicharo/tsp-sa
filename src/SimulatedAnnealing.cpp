@@ -33,12 +33,10 @@ pair<double, Solution*> SimulatedAnnealing::ComputeBatch(Solution* solution) {
     int total = 0;
     int c = 0;
     double r = 0;
-    int stop = L * 31;
-    int period = 2003;
     double temp = temperature.GetTemperature();
-    while (c < L && total++ < stop) {
+    while (c < L && total++ < STOP) {
         double cost = solution->GetCost();
-        if (total % period == 0)
+        if (total % PERIOD == 0)
             solution->MorphIntoNeighbour(true);
         else
             solution->MorphIntoNeighbour(false);
