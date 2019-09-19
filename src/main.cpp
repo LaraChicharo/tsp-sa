@@ -10,11 +10,11 @@
 using namespace std;
 
 
-int main(int argc, char** argv) {
+int main(int argc, char* argv[]) {
 
-    Reader* reader = new Reader();
+    Reader* reader = new Reader(argc, argv);
     WorldBuilder world_builder(reader);
-    
+ 
     vector<int> seeds = reader->GetSeeds();
     for (int seed : seeds) {
         srand(seed);

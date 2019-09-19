@@ -1,8 +1,9 @@
 #ifndef GRAPH_H
     #include "Graph.h"
 #endif
-#include <iostream>
 #include <vector>
+#include <string>
+#include <fstream>
 
 #define READER_H
 
@@ -13,8 +14,11 @@ class ArgumentsReader {
         int runs;
         std::vector<int> seeds;
 
+        void ReadSequenceFile(std::string filename);
+        void ReadSeedsFile(std::string filename);
+
     public:
-        ArgumentsReader();
+        ArgumentsReader(int argc, char* argv[]);
         int GetInstanceSize() const;
         std::vector<int> GetInstanceVertices() const;
         int GetRuns() const;
@@ -39,11 +43,12 @@ class DatabaseReader {
 
 class Reader {
     private:
-        ArgumentsReader arguments_reader;
-        DatabaseReader database_reader;
+        ArgumentsReader* arguments_reader;
+        DatabaseReader* database_reader;
 
     public:
-        Reader();
+        Reader(int argc, char* argv[]);
+        ~Reader();                 
 
         // ArgumentsReader attributes        
         std::vector<int> GetInstanceVertices() const;

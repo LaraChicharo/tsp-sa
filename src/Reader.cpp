@@ -1,14 +1,34 @@
 #include "DatabaseHandler.h"
 #include "Reader.h"
-#include <iostream>
-#include <fstream>
 
 using namespace std;
 
 
-ArgumentsReader::ArgumentsReader() {
+ArgumentsReader::ArgumentsReader(int argc, char* argv[]) {
+    if (argc < 3) {
+        fprintf(
+            stderr,
+            "Wrong input. Arguments must be: <sequence file> <seeds file>\n"
+        );
+        exit(1);
+    }
+
+    string sequencefile_name = argv[1];
+    string seedsfile_name = argv[2];
+    ReadSequenceFile(sequencefile_name);
+    ReadSeedsFile(seedsfile_name);
+}
+
+void ArgumentsReader::ReadSequenceFile(string filename) {
     ifstream first_sequence_file;
-    first_sequence_file.open("samples/40.txt");
+    first_sequence_file.open(filename);
+    if (first_sequence_file.fail()) {
+        fprintf(
+            stderr,
+            "Error opening file: %s\n", filename.c_str()
+        );
+        exit(1);
+    }
     first_sequence_file >> instance_size;
     for (int i = 0; i < instance_size; i++) {
         int ai;
@@ -16,9 +36,18 @@ ArgumentsReader::ArgumentsReader() {
         instance_vertices.push_back(ai);
     }
     first_sequence_file.close();
-    
+}
+
+void ArgumentsReader::ReadSeedsFile(string filename) {
     ifstream seeds_file;
-    seeds_file.open("samples/seeds.txt");
+    seeds_file.open(filename);
+    if (seeds_file.fail()) {
+        fprintf(
+            stderr,
+            "Error opening file: %s\n", filename.c_str()
+        );
+        exit(1);
+    }
     int runs;
     seeds_file >> runs;
     for (int i=0; i<runs; i++) {
@@ -63,30 +92,38 @@ vector<Vertice> DatabaseReader::GetAllVertices() const {
 }
 
 
-Reader::Reader() {}
+Reader::Reader(int argc, char* argv[]) {
+    arguments_reader = new ArgumentsReader(argc, argv);
+    database_reader = new DatabaseReader();
+}
+
+Reader::~Reader() {
+    delete arguments_reader;
+    delete database_reader;
+}
 
 // ArgimentReader atrributes
 vector<int> Reader::GetInstanceVertices() const {
-    return arguments_reader.GetInstanceVertices();
+    return arguments_reader->GetInstanceVertices();
 }
 
 int Reader::GetInstanceSize() const {
-    return arguments_reader.GetInstanceSize();
+    return arguments_reader->GetInstanceSize();
 }
 
 int Reader::GetRuns() const {
-    return arguments_reader.GetRuns();
+    return arguments_reader->GetRuns();
 }
 
 vector<int> Reader::GetSeeds() const {
-    return arguments_reader.GetSeeds();
+    return arguments_reader->GetSeeds();
 }
 
 // DatabaseReader attributes
 vector<pair<pair<int, int>, double>> Reader::GetOriginalEdges() const {
-    return database_reader.GetOriginalEdges();
+    return database_reader->GetOriginalEdges();
 }
 
 vector<Vertice> Reader::GetAllVertices() const {
-    return database_reader.GetAllVertices();
+    return database_reader->GetAllVertices();
 }
