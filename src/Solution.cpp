@@ -68,31 +68,31 @@ double Solution::CalculateSum(
     vector<int>& sequence, AncestryData* ancestry)
 {
     double ssum = ancestry->GetParentSum();
-    vector<int> parent_sequence (sequence);
     pair<int, int> swaped_indexes = ancestry->GetSwapedIndexes();
     int i = swaped_indexes.first;
     int j = swaped_indexes.second;
     
-    swap(parent_sequence[i], parent_sequence[j]);
+    swap(sequence[i], sequence[j]);
     
-    int veri = parent_sequence[i];
-    int verj = parent_sequence[j];
+    int veri = sequence[i];
+    int verj = sequence[j];
     int size = sequence.size();
 
      
     if (i - 1 >= 0)
-        ssum -= metrologist->GetWs(veri, parent_sequence[i - 1]);
+        ssum -= metrologist->GetWs(veri, sequence[i - 1]);
     if (i + 1 < size)
-        ssum -= metrologist->GetWs(veri, parent_sequence[i + 1]);
+        ssum -= metrologist->GetWs(veri, sequence[i + 1]);
     if (j - 1 >= 0)
-        ssum -= metrologist->GetWs(verj, parent_sequence[j - 1]);
+        ssum -= metrologist->GetWs(verj, sequence[j - 1]);
     if (j + 1 < size)
-        ssum -= metrologist->GetWs(verj, parent_sequence[j + 1]);
+        ssum -= metrologist->GetWs(verj, sequence[j + 1]);
 
     if (abs(i - j) == 1)
         ssum += metrologist->GetWs(veri, verj);
     
     
+    swap(sequence[i], sequence[j]);
     veri = sequence[i];
     verj = sequence[j];
     if (i - 1 >= 0)
@@ -126,7 +126,6 @@ void Solution::SetCost(
 }
 
 void Solution::MorphIntoNeighbour(bool calculate_everything) {
-    sequence = GetSequence();
     int size = sequence.size();
     int i, j;
     i = j = 0;
@@ -141,7 +140,7 @@ void Solution::MorphIntoNeighbour(bool calculate_everything) {
         GetCost(),
         GetSum(),
         swaped_indexes);
-    SetCost(sequence, ancestry);
+    SetCost(sequence, ancestry, calculate_everything);
 }
 
 void Solution::MorphBack() {
