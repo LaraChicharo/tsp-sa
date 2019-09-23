@@ -1,0 +1,85 @@
+\hypertarget{classSimulatedAnnealing}{}\section{Simulated\+Annealing Class Reference}
+\label{classSimulatedAnnealing}\index{Simulated\+Annealing@{Simulated\+Annealing}}
+
+
+Implements the heuristic of Simulated Annealing for the T\+SP.  
+
+
+
+
+{\ttfamily \#include $<$Simulated\+Annealing.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSimulatedAnnealing_a63685beb57940ca2eb39e2d6381ca475}{Simulated\+Annealing} (\hyperlink{classTemperature}{Temperature} temperature, \hyperlink{classSolution}{Solution} $\ast$initial\+\_\+solution, int L)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{classSolution}{Solution} $\ast$ \hyperlink{classSimulatedAnnealing_a863ea18e7ff3f9ba90293a295e44b821}{Treshold\+Accepting} ()
+\begin{DoxyCompactList}\small\item\em Executes the full heuristic and gets the best solution it found. \end{DoxyCompactList}\item 
+std\+::pair$<$ double, \hyperlink{classSolution}{Solution} $\ast$ $>$ \hyperlink{classSimulatedAnnealing_a9f8d7e17561ff6730aadb34b0340b086}{Compute\+Batch} (\hyperlink{classSolution}{Solution} $\ast$solution)
+\begin{DoxyCompactList}\small\item\em Computes a batch given a solution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implements the heuristic of Simulated Annealing for the T\+SP. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSimulatedAnnealing_a63685beb57940ca2eb39e2d6381ca475}\label{classSimulatedAnnealing_a63685beb57940ca2eb39e2d6381ca475}} 
+\index{Simulated\+Annealing@{Simulated\+Annealing}!Simulated\+Annealing@{Simulated\+Annealing}}
+\index{Simulated\+Annealing@{Simulated\+Annealing}!Simulated\+Annealing@{Simulated\+Annealing}}
+\subsubsection{\texorpdfstring{Simulated\+Annealing()}{SimulatedAnnealing()}}
+{\footnotesize\ttfamily Simulated\+Annealing\+::\+Simulated\+Annealing (\begin{DoxyParamCaption}\item[{\hyperlink{classTemperature}{Temperature}}]{temperature,  }\item[{\hyperlink{classSolution}{Solution} $\ast$}]{initial\+\_\+solution,  }\item[{int}]{L }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em temperature} & proposed initial temperature for the heuristic, this is not going to be the real initial temperature \\
+\hline
+{\em initial\+\_\+solution} & first proposed solution \\
+\hline
+{\em L} & size of a batch \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classSimulatedAnnealing_a9f8d7e17561ff6730aadb34b0340b086}\label{classSimulatedAnnealing_a9f8d7e17561ff6730aadb34b0340b086}} 
+\index{Simulated\+Annealing@{Simulated\+Annealing}!Compute\+Batch@{Compute\+Batch}}
+\index{Compute\+Batch@{Compute\+Batch}!Simulated\+Annealing@{Simulated\+Annealing}}
+\subsubsection{\texorpdfstring{Compute\+Batch()}{ComputeBatch()}}
+{\footnotesize\ttfamily pair$<$ double, \hyperlink{classSolution}{Solution} $\ast$ $>$ Simulated\+Annealing\+::\+Compute\+Batch (\begin{DoxyParamCaption}\item[{\hyperlink{classSolution}{Solution} $\ast$}]{solution }\end{DoxyParamCaption})}
+
+
+
+Computes a batch given a solution. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em solution} & the solution from which the batch will work upon. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pair, the first number is the accepted ratio of the batch and the second is the last solution computed. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSimulatedAnnealing_a863ea18e7ff3f9ba90293a295e44b821}\label{classSimulatedAnnealing_a863ea18e7ff3f9ba90293a295e44b821}} 
+\index{Simulated\+Annealing@{Simulated\+Annealing}!Treshold\+Accepting@{Treshold\+Accepting}}
+\index{Treshold\+Accepting@{Treshold\+Accepting}!Simulated\+Annealing@{Simulated\+Annealing}}
+\subsubsection{\texorpdfstring{Treshold\+Accepting()}{TresholdAccepting()}}
+{\footnotesize\ttfamily \hyperlink{classSolution}{Solution} $\ast$ Simulated\+Annealing\+::\+Treshold\+Accepting (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Executes the full heuristic and gets the best solution it found. 
+
+\begin{DoxyReturn}{Returns}
+The best solution found. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/Simulated\+Annealing.\+h\item 
+src/Simulated\+Annealing.\+cpp\end{DoxyCompactItemize}

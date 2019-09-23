@@ -1,0 +1,65 @@
+\hypertarget{classDatabaseHandler}{}\section{Database\+Handler Class Reference}
+\label{classDatabaseHandler}\index{Database\+Handler@{Database\+Handler}}
+
+
+Handles connection with the database.  
+
+
+
+
+{\ttfamily \#include $<$Database\+Handler.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classDatabaseHandler_ad8e3c1a3cdb65af2a5963be160f5a33b}\label{classDatabaseHandler_ad8e3c1a3cdb65af2a5963be160f5a33b}} 
+void \hyperlink{classDatabaseHandler_ad8e3c1a3cdb65af2a5963be160f5a33b}{Open\+Database} ()
+\begin{DoxyCompactList}\small\item\em Opens a connection with the database. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDatabaseHandler_a59d91620a1bd3a42cc6a9b610868aba3}\label{classDatabaseHandler_a59d91620a1bd3a42cc6a9b610868aba3}} 
+void \hyperlink{classDatabaseHandler_a59d91620a1bd3a42cc6a9b610868aba3}{Close\+Database} ()
+\begin{DoxyCompactList}\small\item\em Closes the current connection. \end{DoxyCompactList}\item 
+void \hyperlink{classDatabaseHandler_ad6231ac1317c638424c66953bdd26ff0}{Query} (void $\ast$data, std\+::string query, int($\ast$callback)(void $\ast$, int, char $\ast$$\ast$, char $\ast$$\ast$))
+\begin{DoxyCompactList}\small\item\em Executes a query on the database. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDatabaseHandler_a5355c23208ba862fabf21338e4c207e5}\label{classDatabaseHandler_a5355c23208ba862fabf21338e4c207e5}} 
+std\+::vector$<$ std\+::pair$<$ std\+::pair$<$ int, int $>$, double $>$ $>$ \hyperlink{classDatabaseHandler_a5355c23208ba862fabf21338e4c207e5}{Get\+Edges} ()
+\begin{DoxyCompactList}\small\item\em Returns the edges contained in the database. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDatabaseHandler_a380ac8cc0bd903de7e04b94e573bfe7e}\label{classDatabaseHandler_a380ac8cc0bd903de7e04b94e573bfe7e}} 
+std\+::vector$<$ \hyperlink{classVertice}{Vertice} $>$ \hyperlink{classDatabaseHandler_a380ac8cc0bd903de7e04b94e573bfe7e}{Get\+Vertices} ()
+\begin{DoxyCompactList}\small\item\em Returns the vertices in the database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classDatabaseHandler_aef050c7d4f8f945cb393b53b51aab185}\label{classDatabaseHandler_aef050c7d4f8f945cb393b53b51aab185}} 
+static int \hyperlink{classDatabaseHandler_aef050c7d4f8f945cb393b53b51aab185}{Callback\+Print\+Edges} (void $\ast$data, int argc, char $\ast$$\ast$argv, char $\ast$$\ast$colname)
+\begin{DoxyCompactList}\small\item\em Function to be called after a query is executed that prints all of the edges in the database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Handles connection with the database. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classDatabaseHandler_ad6231ac1317c638424c66953bdd26ff0}\label{classDatabaseHandler_ad6231ac1317c638424c66953bdd26ff0}} 
+\index{Database\+Handler@{Database\+Handler}!Query@{Query}}
+\index{Query@{Query}!Database\+Handler@{Database\+Handler}}
+\subsubsection{\texorpdfstring{Query()}{Query()}}
+{\footnotesize\ttfamily void Database\+Handler\+::\+Query (\begin{DoxyParamCaption}\item[{void $\ast$}]{data,  }\item[{std\+::string}]{query,  }\item[{int($\ast$)(void $\ast$, int, char $\ast$$\ast$, char $\ast$$\ast$)}]{callback }\end{DoxyParamCaption})}
+
+
+
+Executes a query on the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & data to pass to callback \\
+\hline
+{\em query} & the query in S\+QL language \\
+\hline
+{\em callback} & callback function to execute after the query is done \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/Database\+Handler.\+h\item 
+src/Database\+Handler.\+cpp\end{DoxyCompactItemize}

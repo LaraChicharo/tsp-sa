@@ -1,0 +1,151 @@
+\hypertarget{classGraph}{}\section{Graph Class Reference}
+\label{classGraph}\index{Graph@{Graph}}
+
+
+Represents an undirected graph where each vertex is a city and each edge is a route from city A to city B.  
+
+
+
+
+{\ttfamily \#include $<$Graph.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGraph_a47d82684ef5ee46d7117c028d277c91a}{Graph} (std\+::vector$<$ int $>$ vertices, std\+::vector$<$ \hyperlink{classVertice}{Vertice} $>$ all\+\_\+vertices, std\+::vector$<$ std\+::pair$<$ std\+::pair$<$ int, int $>$, double $>$$>$ original\+\_\+edges)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+double \hyperlink{classGraph_aadc5562fe6ff94a8cc787fd935b79dc1}{Get\+Edge\+Val} (int v, int u) const
+\begin{DoxyCompactList}\small\item\em Returns the value/weight of the edge going from vertice v to vertice u. \end{DoxyCompactList}\item 
+void \hyperlink{classGraph_aaaa599eab87163d7cee7cdced6193367}{Set\+Edge\+Val} (int v, int u, double val)
+\begin{DoxyCompactList}\small\item\em Sets the value of the edge (u, v) to val. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classGraph_adc73f5e5a078fd83afd0184afd272b79}\label{classGraph_adc73f5e5a078fd83afd0184afd272b79}} 
+std\+::vector$<$ int $>$ \hyperlink{classGraph_adc73f5e5a078fd83afd0184afd272b79}{Get\+Instance\+Vertices} () const
+\begin{DoxyCompactList}\small\item\em Returns a copy of the vertices of this graph. \end{DoxyCompactList}\item 
+\hyperlink{classVertice}{Vertice} \hyperlink{classGraph_a58fa12d89f6fd29e48ed2c4be81c5b1e}{Get\+Vertice} (int v) const
+\begin{DoxyCompactList}\small\item\em Returns the vertice with id v. \end{DoxyCompactList}\item 
+bool \hyperlink{classGraph_a2e0becac02c64bf99f0952bd4da11429}{Original\+Edge\+Exists} (int v, int u) const
+\begin{DoxyCompactList}\small\item\em Returns wether the edge (v, u) is original or is one of the extremely long edges. \end{DoxyCompactList}\item 
+bool \hyperlink{classGraph_abd80e767eb0d57976cc6b5c87040355a}{Edge\+Exists} (int v, int u) const
+\begin{DoxyCompactList}\small\item\em Returns wether the edge (v, u) exists in the graph or not. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classGraph_a3b84886e2d970dd5a581f566fabd3bcc}\label{classGraph_a3b84886e2d970dd5a581f566fabd3bcc}} 
+int \hyperlink{classGraph_a3b84886e2d970dd5a581f566fabd3bcc}{Get\+Number\+Of\+Vertices} () const
+\begin{DoxyCompactList}\small\item\em Returns the number of vertices in this graph. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represents an undirected graph where each vertex is a city and each edge is a route from city A to city B. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classGraph_a47d82684ef5ee46d7117c028d277c91a}\label{classGraph_a47d82684ef5ee46d7117c028d277c91a}} 
+\index{Graph@{Graph}!Graph@{Graph}}
+\index{Graph@{Graph}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{Graph()}{Graph()}}
+{\footnotesize\ttfamily Graph\+::\+Graph (\begin{DoxyParamCaption}\item[{std\+::vector$<$ int $>$}]{vertices,  }\item[{std\+::vector$<$ \hyperlink{classVertice}{Vertice} $>$}]{all\+\_\+vertices,  }\item[{std\+::vector$<$ std\+::pair$<$ std\+::pair$<$ int, int $>$, double $>$$>$}]{original\+\_\+edges }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertices} & vertices of the graph \\
+\hline
+{\em all\+\_\+vertices} & all vertices that exists in the database \\
+\hline
+{\em original\+\_\+edges} & edges that are not made up \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classGraph_abd80e767eb0d57976cc6b5c87040355a}\label{classGraph_abd80e767eb0d57976cc6b5c87040355a}} 
+\index{Graph@{Graph}!Edge\+Exists@{Edge\+Exists}}
+\index{Edge\+Exists@{Edge\+Exists}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{Edge\+Exists()}{EdgeExists()}}
+{\footnotesize\ttfamily bool Graph\+::\+Edge\+Exists (\begin{DoxyParamCaption}\item[{int}]{v,  }\item[{int}]{u }\end{DoxyParamCaption}) const}
+
+
+
+Returns wether the edge (v, u) exists in the graph or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & vertice id \\
+\hline
+{\em u} & vertice id \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classGraph_aadc5562fe6ff94a8cc787fd935b79dc1}\label{classGraph_aadc5562fe6ff94a8cc787fd935b79dc1}} 
+\index{Graph@{Graph}!Get\+Edge\+Val@{Get\+Edge\+Val}}
+\index{Get\+Edge\+Val@{Get\+Edge\+Val}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{Get\+Edge\+Val()}{GetEdgeVal()}}
+{\footnotesize\ttfamily double Graph\+::\+Get\+Edge\+Val (\begin{DoxyParamCaption}\item[{int}]{v,  }\item[{int}]{u }\end{DoxyParamCaption}) const}
+
+
+
+Returns the value/weight of the edge going from vertice v to vertice u. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & vertice id \\
+\hline
+{\em u} & vertice id \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classGraph_a58fa12d89f6fd29e48ed2c4be81c5b1e}\label{classGraph_a58fa12d89f6fd29e48ed2c4be81c5b1e}} 
+\index{Graph@{Graph}!Get\+Vertice@{Get\+Vertice}}
+\index{Get\+Vertice@{Get\+Vertice}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{Get\+Vertice()}{GetVertice()}}
+{\footnotesize\ttfamily \hyperlink{classVertice}{Vertice} Graph\+::\+Get\+Vertice (\begin{DoxyParamCaption}\item[{int}]{v }\end{DoxyParamCaption}) const}
+
+
+
+Returns the vertice with id v. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & id of vertice to return \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classGraph_a2e0becac02c64bf99f0952bd4da11429}\label{classGraph_a2e0becac02c64bf99f0952bd4da11429}} 
+\index{Graph@{Graph}!Original\+Edge\+Exists@{Original\+Edge\+Exists}}
+\index{Original\+Edge\+Exists@{Original\+Edge\+Exists}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{Original\+Edge\+Exists()}{OriginalEdgeExists()}}
+{\footnotesize\ttfamily bool Graph\+::\+Original\+Edge\+Exists (\begin{DoxyParamCaption}\item[{int}]{v,  }\item[{int}]{u }\end{DoxyParamCaption}) const}
+
+
+
+Returns wether the edge (v, u) is original or is one of the extremely long edges. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & vertice id \\
+\hline
+{\em u} & vertice id \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classGraph_aaaa599eab87163d7cee7cdced6193367}\label{classGraph_aaaa599eab87163d7cee7cdced6193367}} 
+\index{Graph@{Graph}!Set\+Edge\+Val@{Set\+Edge\+Val}}
+\index{Set\+Edge\+Val@{Set\+Edge\+Val}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{Set\+Edge\+Val()}{SetEdgeVal()}}
+{\footnotesize\ttfamily void Graph\+::\+Set\+Edge\+Val (\begin{DoxyParamCaption}\item[{int}]{v,  }\item[{int}]{u,  }\item[{double}]{val }\end{DoxyParamCaption})}
+
+
+
+Sets the value of the edge (u, v) to val. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & vertice id \\
+\hline
+{\em u} & vertice id \\
+\hline
+{\em val} & new value of the edge \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/Graph.\+h\item 
+src/Graph.\+cpp\end{DoxyCompactItemize}
