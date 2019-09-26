@@ -33,9 +33,16 @@ Temperature WorldBuilder::BuildTemperature(Solution* solution) const {
     return temperature;
 }
 
-SimulatedAnnealing WorldBuilder::BuildSimulatedAnnealing() const {
+Journal* WorldBuilder::BuildJournal(int seed) const {
+    Journal* journal = new Journal(seed);
+    return journal;
+}
+
+SimulatedAnnealing WorldBuilder::BuildSimulatedAnnealing(int seed) const {
+    srand(seed);
     Solution* solution = BuildFirstSolution();
     Temperature temperature = BuildTemperature(solution);
-    SimulatedAnnealing simannealing(temperature, solution, L);
+    Journal* journal = BuildJournal(seed);
+    SimulatedAnnealing simannealing(temperature, solution, journal, L);
     return simannealing;
 }

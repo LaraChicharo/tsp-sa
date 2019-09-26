@@ -16,17 +16,17 @@ int main(int argc, char* argv[]) {
     WorldBuilder world_builder(reader);
  
     vector<int> seeds = reader->GetSeeds();
-    for (int seed : seeds) {
-        srand(seed);
-        SimulatedAnnealing simannealing =
-            world_builder.BuildSimulatedAnnealing();
-        Solution* best_solution = simannealing.TresholdAccepting();
-        printf("Best solution for seed: %d cost: %2.15f\n",
-            seed, best_solution->GetCost());
-        best_solution->Print();
-        delete best_solution;
-        cout << " ---- " << endl;
-    }
- 
+    
+    // taking first seed only to simulate how the Journal is goint to work
+    int seed = seeds[0];
+    SimulatedAnnealing simannealing =
+        world_builder.BuildSimulatedAnnealing(seed);
+    Solution* best_solution = simannealing.TresholdAccepting();
+    printf("Best solution for seed: %d cost: %2.15f\n",
+        seed, best_solution->GetCost());
+    best_solution->Print();
+    simannealing.WriteToJournalFiles();
+    delete best_solution;
+
     return 0;
 }
