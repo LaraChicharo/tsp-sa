@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Metrologist.h"
 
 /// @brief Fills the graph of cities with fake edges.

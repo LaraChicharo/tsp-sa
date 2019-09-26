@@ -1,13 +1,10 @@
-#ifndef SOLUTION_H
-    #include "Solution.h"
-#endif
-#ifndef TEMPERATURE_H
-    #include "Temperature.h"
-#endif
-#ifndef JOURNAL_H
-    #include "Journal.h"
-#endif
+#pragma once
+
+#include "Solution.h"
+#include "Temperature.h"
+#include "Journal.h"
 #include <cfloat>
+
 
 /// @brief Implements the heuristic of Simulated Annealing for the TSP.
 class SimulatedAnnealing {

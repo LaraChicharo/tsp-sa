@@ -1,6 +1,6 @@
 /// @brief Document containing constats for the program and for
 /// the heuristic itself.
-
+#pragma once
 
 /// Maximum number of vertices the program is going to handle
 const int MAX_VERTICES = 1500;

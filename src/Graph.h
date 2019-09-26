@@ -1,9 +1,8 @@
+#pragma once
+
 #include "Constants.h"
 #include <vector>
 #include <string>
-
-
-#define GRAPH_H
 
 
 /// @brief Represents a vertice (a city) in the graph of the system.

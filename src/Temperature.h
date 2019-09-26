@@ -1,10 +1,8 @@
-#ifndef SOLUTION_H
-    #include "Solution.h"
-#endif
+#pragma once
+
+#include "Solution.h"
 #include <cmath>
 
-
-#define TEMPERATURE_H
 
 /// @brief Represents a temperature.
 class Temperature {

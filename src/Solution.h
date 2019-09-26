@@ -1,10 +1,9 @@
+#pragma once
+
 #include <iostream>
 #include <vector>
-#ifndef METROLOGIST_H
-    #include "Metrologist.h"
-#endif
+#include "Metrologist.h"
 
-#define SOLUTION_H
 
 /// @brief Stores data of the ancestor of a solution to be able to recover
 /// said ancestor fast.

@@ -1,11 +1,10 @@
-#ifndef GRAPH_H
-    #include "Graph.h"
-#endif
+#pragma once
+
+#include "Graph.h"
 #include <vector>
 #include <string>
 #include <fstream>
 
-#define READER_H
 
 /// @brief Class to read and parse arguments from command line.
 class ArgumentsReader {

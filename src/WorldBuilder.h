@@ -1,11 +1,9 @@
+#pragma once
+
 #include "GraphFiller.h"
 #include "Solution.h"
-#ifndef METROLOGIST_H
-    #include "Metrologist.h"
-#endif
-#ifndef JOURNAL_H
-    #include "Journal.h"
-#endif
+#include "Metrologist.h"
+#include "Journal.h"
 #include "Reader.h"
 #include "Temperature.h"
 #include "SimulatedAnnealing.h"

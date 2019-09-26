@@ -1,10 +1,10 @@
+#pragma once
+
 #include <vector>
 #include <string>
 #include <fstream>
 #include <iomanip>
 
-
-#define JOURNAL_H
 
 /// @brief A point in a 2D space representing solutions.
 struct PointSolution {

@@ -1,9 +1,8 @@
-#ifndef GRAPH_H
-    #include "Graph.h"
-#endif
+#pragma once
+
+#include "Graph.h"
 #include "earth.h"
 
-#define METROLOGIST_H
 
 /// @brief Calculates measurements. Distance between cities, etc.
 class Metrologist {

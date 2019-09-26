@@ -1,10 +1,6 @@
 #include "WorldBuilder.h"
-#ifndef SOLUTION_H
-    #include "Solution.h"
-#endif
-#ifndef READER_H
-    #include "Reader.h"
-#endif
+#include "Solution.h"
+#include "Reader.h"
 #include <vector>
 
 using namespace std;
