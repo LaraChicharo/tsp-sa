@@ -72,6 +72,7 @@ class Graph {
             std::vector<std::pair<std::pair<int, int>, double>> original_edges
         );
         
+        /// @brief Destructor.
         ~Graph();        
 
         /// @brief Returns the value/weight of the edge

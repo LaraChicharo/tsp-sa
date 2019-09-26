@@ -45,11 +45,11 @@ class Journal {
 
         /// @brief adds a new solution to the list of accepted solutions.
         /// @param accepted number of accepted solutions so far
-        /// @param cost the cost of the solution.
+        /// @param cost     the cost of the solution.
         void AppendAcceptedSolution(int accepted, double solution_cost);
         /// @brief adds a new solution to the list of best solutions.
         /// @param accepted number of accepted solutions so far
-        /// @param cost the cost of the solution.
+        /// @param cost     the cost of the solution.
         void AppendBestSolution(int accepted, double solution_cost);
         
         /// @brief writes the points to an output file.

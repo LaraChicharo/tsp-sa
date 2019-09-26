@@ -25,9 +25,6 @@ class WorldBuilder {
         /// pointer to GraphFiller instance
         GraphFiller* graph_builder;
 
-        /// pointer to Journal instance
-        Journal* journal;
-
         /// @brief Builds an instance of the class Temperature.
         /// @param solution solution used to calculate the initial
         /// temperature.
@@ -44,9 +41,12 @@ class WorldBuilder {
         /// @param reader an instance of the class Reader.
         WorldBuilder(Reader* reader);
 
+        /// @brief Destructor.
+        ~WorldBuilder();
+
         /// @brief builds an object of the class SimulatedAnnealing.
         /// @return the object.
-        SimulatedAnnealing BuildSimulatedAnnealing(int seed) const;
+        SimulatedAnnealing* BuildSimulatedAnnealing(int seed) const;
         /// @brief generates a first solution based on first_sequence.
         /// @return said first solution.
         Solution* BuildFirstSolution() const;

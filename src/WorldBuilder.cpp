@@ -16,6 +16,13 @@ WorldBuilder::WorldBuilder(Reader* reader): reader(reader) {
     graph_builder->FillGraph(graph, metrologist);
 }
 
+WorldBuilder::~WorldBuilder() {
+    delete reader;
+    delete graph;
+    delete metrologist;
+    delete graph_builder;
+}
+
 Solution* WorldBuilder::BuildFirstSolution() const {
     Solution* first_solution = new Solution(first_sequence, metrologist);
     return first_solution;
@@ -38,11 +45,12 @@ Journal* WorldBuilder::BuildJournal(int seed) const {
     return journal;
 }
 
-SimulatedAnnealing WorldBuilder::BuildSimulatedAnnealing(int seed) const {
+SimulatedAnnealing* WorldBuilder::BuildSimulatedAnnealing(int seed) const {
     srand(seed);
     Solution* solution = BuildFirstSolution();
     Temperature temperature = BuildTemperature(solution);
     Journal* journal = BuildJournal(seed);
-    SimulatedAnnealing simannealing(temperature, solution, journal, L);
+    SimulatedAnnealing* simannealing =
+        new SimulatedAnnealing(temperature, solution, journal, L);
     return simannealing;
 }

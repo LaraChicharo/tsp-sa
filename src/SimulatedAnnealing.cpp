@@ -16,6 +16,10 @@ SimulatedAnnealing::SimulatedAnnealing(
     accepted_global(0)
 {}
 
+SimulatedAnnealing::~SimulatedAnnealing() {
+    delete journal;
+}
+
 Solution* SimulatedAnnealing::TresholdAccepting() {
     double p = 0;
     Solution* best_solution = new Solution(initial_solution);

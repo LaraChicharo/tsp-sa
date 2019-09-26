@@ -34,6 +34,7 @@ Graph::Graph(
 ):
     vertices(vertices)
     {
+        // Setting the 0th vertice
         this->all_vertices.push_back(Vertice(0, 0, 0, 0));
         for (Vertice v : all_vertices) {
             this->all_vertices.push_back(v);
@@ -72,7 +73,6 @@ Graph::Graph(
     }
 
 Graph::~Graph() {
-    printf("freeing graph");
     for (int i = 0; i < MAX_VERTICES; i++) {
         delete [] original_edges_exists[i];
         
@@ -84,6 +84,7 @@ Graph::~Graph() {
     
     delete [] original_edges_exists;
 }
+
 
 double Graph::GetEdgeVal(int v, int u) const {
     return edges[v][u];

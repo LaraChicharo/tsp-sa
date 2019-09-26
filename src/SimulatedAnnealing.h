@@ -37,6 +37,9 @@ class SimulatedAnnealing {
             int L
         );
 
+        /// @brief Destructor.
+        ~SimulatedAnnealing();
+
         /// @brief Executes the full heuristic and gets the best solution
         /// it found
         /// @return The best solution found.
