@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <vector>
-#include "Metrologist.h"
+#include "Metrologist.hpp"
 
 
 /// @brief Stores data of the ancestor of a solution to be able to recover

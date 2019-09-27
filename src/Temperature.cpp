@@ -1,4 +1,4 @@
-#include "Temperature.h"
+#include "Temperature.hpp"
 
 using namespace std;
 

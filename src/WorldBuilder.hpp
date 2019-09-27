@@ -1,12 +1,12 @@
 #pragma once
 
-#include "GraphFiller.h"
-#include "Solution.h"
-#include "Metrologist.h"
-#include "Journal.h"
-#include "Reader.h"
-#include "Temperature.h"
-#include "SimulatedAnnealing.h"
+#include "GraphFiller.hpp"
+#include "Solution.hpp"
+#include "Metrologist.hpp"
+#include "Journal.hpp"
+#include "Reader.hpp"
+#include "Temperature.hpp"
+#include "SimulatedAnnealing.hpp"
 
 
 /// @brief Class to wrap all the necesary steps to set up the heuristic

@@ -1,4 +1,4 @@
-#include "DatabaseHandler.h"
+#include "DatabaseHandler.hpp"
 #include <iostream>
 #include <string.h>
 

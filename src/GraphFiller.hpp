@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Metrologist.h"
+#include "Metrologist.hpp"
 
 /// @brief Fills the graph of cities with fake edges.
 class GraphFiller {

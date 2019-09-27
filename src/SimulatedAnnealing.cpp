@@ -1,4 +1,4 @@
-#include "SimulatedAnnealing.h"
+#include "SimulatedAnnealing.hpp"
 
 using namespace std;
 

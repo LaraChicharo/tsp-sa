@@ -1,6 +1,6 @@
-#include "WorldBuilder.h"
-#include "Solution.h"
-#include "Reader.h"
+#include "WorldBuilder.hpp"
+#include "Solution.hpp"
+#include "Reader.hpp"
 #include <vector>
 
 using namespace std;

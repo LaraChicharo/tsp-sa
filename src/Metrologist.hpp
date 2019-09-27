@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Graph.h"
-#include "earth.h"
+#include "Graph.hpp"
+#include "earth.hpp"
 
 
 /// @brief Calculates measurements. Distance between cities, etc.

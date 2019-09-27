@@ -1,5 +1,5 @@
-#include "DatabaseHandler.h"
-#include "Reader.h"
+#include "DatabaseHandler.hpp"
+#include "Reader.hpp"
 
 using namespace std;
 

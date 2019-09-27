@@ -1,4 +1,4 @@
-#include "WorldBuilder.h"
+#include "WorldBuilder.hpp"
 
 using namespace std;
 

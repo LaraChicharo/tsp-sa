@@ -1,4 +1,4 @@
-#include "Journal.h"
+#include "Journal.hpp"
 
 using namespace std;
 

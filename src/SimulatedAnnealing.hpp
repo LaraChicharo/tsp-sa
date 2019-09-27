@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Solution.h"
-#include "Temperature.h"
-#include "Journal.h"
+#include "Solution.hpp"
+#include "Temperature.hpp"
+#include "Journal.hpp"
 #include <cfloat>
 
 

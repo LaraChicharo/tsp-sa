@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Graph.h"
+#include "Graph.hpp"
 #include <sqlite3.h>
 #include <string>
 #include <vector>
