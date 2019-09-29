@@ -23,8 +23,13 @@ WorldBuilder::~WorldBuilder() {
     delete graph_builder;
 }
 
-Solution* WorldBuilder::BuildFirstSolution() const {
-    Solution* first_solution = new Solution(first_sequence, metrologist);
+Solution* WorldBuilder::BuildFirstSolution(int seed) const {
+    vector<int> new_sequence (first_sequence);
+    shuffle(
+        new_sequence.begin(),
+        new_sequence.end(),
+        default_random_engine(seed));
+    Solution* first_solution = new Solution(new_sequence, metrologist);
     return first_solution;
 }
 
@@ -47,8 +52,9 @@ Journal* WorldBuilder::BuildJournal(int seed) const {
 
 SimulatedAnnealing* WorldBuilder::BuildSimulatedAnnealing(int seed) const {
     srand(seed);
-    Solution* solution = BuildFirstSolution();
+    Solution* solution = BuildFirstSolution(seed);
     Temperature temperature = BuildTemperature(solution);
+    printf("Temperature: %2.7f\n", temperature.GetTemperature()); 
     Journal* journal = BuildJournal(seed);
     SimulatedAnnealing* simannealing =
         new SimulatedAnnealing(temperature, solution, journal, L);

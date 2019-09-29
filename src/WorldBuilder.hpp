@@ -8,6 +8,8 @@
 #include "Temperature.hpp"
 #include "SimulatedAnnealing.hpp"
 
+#include <algorithm>
+#include <random>
 
 /// @brief Class to wrap all the necesary steps to set up the heuristic
 class WorldBuilder {
@@ -47,5 +49,5 @@ class WorldBuilder {
         SimulatedAnnealing* BuildSimulatedAnnealing(int seed) const;
         /// @brief generates a first solution based on first_sequence.
         /// @return said first solution.
-        Solution* BuildFirstSolution() const;
+        Solution* BuildFirstSolution(int seed) const;
 };
