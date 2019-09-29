@@ -41,6 +41,10 @@ class SimulatedAnnealing {
         /// it found
         /// @return The best solution found.
         Solution* TresholdAccepting();
+        /// @brief Executes TresholdAccepting but also uses the sweep
+        /// neighbourhood technique.
+        /// @return The best solution found.
+        Solution* TresholdAcceptingSweep();
         /// @brief Computes a batch given a solution.
         /// @param solution the solution from which the batch will work upon.
         /// @return A pair, the first number is the accepted ratio

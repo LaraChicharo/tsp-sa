@@ -101,8 +101,28 @@ class Solution {
         /// calculate the cost of the solution will be executed, the 
         /// constant time function otherwise.
         void MorphIntoNeighbour(bool calculate_everything = false);
+        
+        /// @brief Transforms the current solution into a neigbour solution
+        /// by swapping the ith and the jth items in the sequence.
+        /// @param i                    first index to swap
+        /// @param j                    second index to swap
+        /// @param calculate_everything if true the linear function to
+        /// calculate the cost of the solution will be executed, the 
+        /// constant time function otherwise.
+        void MorphIntoNeighbour(
+            int i,
+            int j,
+            bool calculate_everything = false
+        );
         /// @brief Transforms the current solution to its parent soluiton.
         void MorphBack();
+        /// @brief Checks all of its neihbours lookig for a better solution,
+        /// if it finds it, the current solution morphs into it.
+        bool Sweep();
+        /// @brief Keeps morphing the soluition into the best in its
+        /// neighbourhood until the current solution its the best.
+        /// @return true if it found a better solution, false otherwise.
+        void HardSweep();
         /// @brief Returns the cost of the solution.
         double GetCost();
         /// @brief Returns the sum of the edges associated with the soluition.

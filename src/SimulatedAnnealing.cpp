@@ -43,6 +43,15 @@ Solution* SimulatedAnnealing::TresholdAccepting() {
     return best_solution;
 }
 
+Solution* SimulatedAnnealing::TresholdAcceptingSweep() {
+    Solution* best = TresholdAccepting();
+    while (best->Sweep()) {
+        accepted_global++;
+        journal->AppendBestSolution(accepted_global, best->GetCost());
+    }
+    return best;
+}
+
 pair<double, Solution*> SimulatedAnnealing::ComputeBatch(Solution* solution) {
     int iteration_batch = 0;
     int c = 0;

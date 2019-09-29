@@ -17,7 +17,7 @@ int main(int argc, char* argv[]) {
     int seed = seeds[0];
     SimulatedAnnealing* simannealing =
         world_builder->BuildSimulatedAnnealing(seed);
-    Solution* best_solution = simannealing->TresholdAccepting();
+    Solution* best_solution = simannealing->TresholdAcceptingSweep();
     printf("Best solution for seed: %d cost: %2.15f\n",
         seed, best_solution->GetCost());
     best_solution->Print();

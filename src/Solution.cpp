@@ -125,14 +125,7 @@ void Solution::SetCost(
     cost = CalculateCost(ssum);
 }
 
-void Solution::MorphIntoNeighbour(bool calculate_everything) {
-    int size = sequence.size();
-    int i, j;
-    i = j = 0;
-    while (i == j) {
-        i = rand() % size;
-        j = rand() % size;
-    }
+void Solution::MorphIntoNeighbour(int i, int j, bool calculate_everything) {
     swap(sequence[i], sequence[j]);
     pair<int, int> swaped_indexes = {i, j};
     delete ancestry;
@@ -141,6 +134,17 @@ void Solution::MorphIntoNeighbour(bool calculate_everything) {
         GetSum(),
         swaped_indexes);
     SetCost(sequence, ancestry, calculate_everything);
+}
+
+void Solution::MorphIntoNeighbour(bool calculate_everything) {
+    int size = sequence.size();
+    int i, j;
+    i = j = 0;
+    while (i == j) {
+        i = rand() % size;
+        j = rand() % size;
+    }
+    MorphIntoNeighbour(i, j, calculate_everything);
 }
 
 void Solution::MorphBack() {
@@ -158,7 +162,24 @@ void Solution::MorphBack() {
     SetCost(sequence, ancestry);
 }
 
+bool Solution::Sweep() {
+    double original_cost = GetCost();
+    int size = sequence.size();
+    for (int i = 0; i < size; i++) {
+        for (int j = i + 1; j < size; j++) {
+            MorphIntoNeighbour(i, j, false);
+            if (GetCost() >= original_cost)
+                MorphBack();
+            else
+                return true; // found a better solution
+        }
+    }
+    return false;
+}
 
+void Solution::HardSweep() {
+    while (Sweep());
+}
 
 double Solution::GetCost() {
     return cost;
