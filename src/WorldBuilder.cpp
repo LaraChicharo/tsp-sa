@@ -54,7 +54,6 @@ SimulatedAnnealing* WorldBuilder::BuildSimulatedAnnealing(int seed) const {
     srand(seed);
     Solution* solution = BuildFirstSolution(seed);
     Temperature temperature = BuildTemperature(solution);
-    printf("Temperature: %2.7f\n", temperature.GetTemperature()); 
     Journal* journal = BuildJournal(seed);
     SimulatedAnnealing* simannealing =
         new SimulatedAnnealing(temperature, solution, journal, L);

@@ -6,17 +6,34 @@ using namespace std;
 
 ArgumentsReader::ArgumentsReader(int argc, char* argv[]) {
     if (argc < 3) {
-        fprintf(
-            stderr,
-            "Wrong input. Arguments must be: <sequence file> <seeds file>\n"
-        );
+        PrintWrongInputError();    
         exit(1);
     }
 
     string sequencefile_name = argv[1];
-    string seedsfile_name = argv[2];
+    string secondarg = argv[2];
+    if (secondarg == "-p") {
+        going_to_plot = true;
+        if (argc < 4) {
+            PrintWrongInputError();
+            exit(1);
+        }
+        seed = stoi(argv[3]);
+    } else {
+        going_to_plot = false;
+        string seedsfile_name = argv[2];
+        ReadSeedsFile(seedsfile_name);
+    }
     ReadSequenceFile(sequencefile_name);
-    ReadSeedsFile(seedsfile_name);
+}
+
+void ArgumentsReader::PrintWrongInputError() const {
+    fprintf(
+        stderr,
+        "Wrong input. Arguments must be: %s or %s\n", 
+        "<sequence file> <seeds file>\n",
+        "<sequence file> -p <seed>"
+    );
 }
 
 void ArgumentsReader::ReadSequenceFile(string filename) {
@@ -74,6 +91,14 @@ vector<int> ArgumentsReader::GetSeeds() const {
     return seeds;
 }
 
+int ArgumentsReader::GetSeed() const {
+    return seed;
+}
+
+bool ArgumentsReader::GoingToPlot() const {
+    return going_to_plot;
+}
+
  
 DatabaseReader::DatabaseReader() {
     DatabaseHandler* dbh = new DatabaseHandler();
@@ -117,6 +142,14 @@ int Reader::GetRuns() const {
 
 vector<int> Reader::GetSeeds() const {
     return arguments_reader->GetSeeds();
+}
+
+int Reader::GetSeed() const {
+    return arguments_reader->GetSeed();
+}
+
+bool Reader::GoingToPlot() const {
+    return arguments_reader->GoingToPlot();
 }
 
 // DatabaseReader attributes

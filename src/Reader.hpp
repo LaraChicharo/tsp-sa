@@ -18,15 +18,20 @@ class ArgumentsReader {
         /// Seeds that are going to be used to feed srand.
         /// The number of seeds must match runs
         std::vector<int> seeds;
-
+        /// Wether the system is going to plot or run seeds in bulk
+        bool going_to_plot;
+        /// Seed to plot
+        int seed;
         /// @brief Reads the file that provides the system with
         /// the first proposed solution for the problem.
         /// @param filename filename containing said solution
         void ReadSequenceFile(std::string filename);
-
         /// @brief Reads the file containing the seeds for each run.
         /// @param filename filename containing said seeds
         void ReadSeedsFile(std::string filename);
+        /// @brief Prints an error message to stderr when the arguments
+        /// from command line are wrong.
+        void PrintWrongInputError() const;
 
     public:
 
@@ -43,6 +48,11 @@ class ArgumentsReader {
         int GetRuns() const;
         /// @brief Returs the seeds the system is going to run.
         std::vector<int> GetSeeds() const;
+        /// @brief Returns the seed to plot.
+        int GetSeed() const;
+        /// @brief Returns wether the system is going to plot or run seeds
+        /// in bulk.
+        bool GoingToPlot() const;
 };
 
 
@@ -89,6 +99,11 @@ class Reader {
         int GetRuns() const;
         /// @brief Returs the seeds the system is going to run.
         std::vector<int> GetSeeds() const;
+        /// @brief Returns the seed to plot.
+        int GetSeed() const;
+        /// @brief Returns wether the system is going to plot or run seeds
+        /// in bulk.
+        bool GoingToPlot() const;
         
         // DatabaseReader attributes
         

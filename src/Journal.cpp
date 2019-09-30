@@ -25,6 +25,7 @@ void Journal::WriteToBestSolutionsFile() const {
         output_file << ps.accepted << " " <<
         fixed << setprecision(5) << ps.cost << endl;
     }
+    printf("Writing plot info to: %s\n", filename.c_str());
     output_file.close();
 }
 
@@ -36,6 +37,7 @@ void Journal::WriteToAcceptedSolutionsFile() const {
         output_file << ps.accepted << " " <<
         fixed << setprecision(5) << ps.cost << endl;
     }
+    printf("Writing plot info to: %s\n", filename.c_str());
     output_file.close();
 }
 
