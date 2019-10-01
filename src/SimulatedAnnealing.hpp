@@ -46,10 +46,16 @@ class SimulatedAnnealing {
         /// @return The best solution found.
         Solution* TresholdAcceptingSweep();
         /// @brief Computes a batch given a solution.
-        /// @param solution the solution from which the batch will work upon.
+        /// @param solution the solution from which the batch will work upon
+        /// @param best_solution the best solution the system has found.
+        /// If a better solution is encountered on this batch, the 
+        /// variable is updated.
         /// @return A pair, the first number is the accepted ratio
         /// of the batch and the second is the last solution computed.
-        std::pair<double, Solution*> ComputeBatch(Solution* solution);
+        std::pair<double, Solution*> ComputeBatch(
+            Solution* solution,
+            Solution* best_solution
+        );
         /// @brief Writes info on the solutions obtained to a file
         /// in the form of points.
         void WriteToJournalFiles();

@@ -28,14 +28,10 @@ Solution* SimulatedAnnealing::TresholdAccepting() {
         double q = DBL_MAX;
         while (p <= q) {
             q = p;
-            pair<double, Solution*> mpair = ComputeBatch(solution);
-            p = mpair.first; solution = mpair.second;
-            if (solution->GetCost() < best_solution->GetCost()) {
-                best_solution = new Solution(solution);
-                journal->AppendBestSolution(
-                    accepted_global, best_solution->GetCost()
-                );
-            }
+            pair<double, Solution*> mpair = ComputeBatch(
+                solution, best_solution);
+            p = mpair.first;
+            solution = mpair.second;
         }
         temperature.Decrease();
     }
@@ -52,7 +48,9 @@ Solution* SimulatedAnnealing::TresholdAcceptingSweep() {
     return best;
 }
 
-pair<double, Solution*> SimulatedAnnealing::ComputeBatch(Solution* solution) {
+pair<double, Solution*> SimulatedAnnealing::ComputeBatch(
+    Solution* solution, Solution* best_solution
+) {
     int iteration_batch = 0;
     int c = 0;
     double r = 0;
@@ -63,6 +61,15 @@ pair<double, Solution*> SimulatedAnnealing::ComputeBatch(Solution* solution) {
             solution->MorphIntoNeighbour(true);
         else
             solution->MorphIntoNeighbour(false);
+
+        if (solution->GetCost() < best_solution->GetCost()) {
+            delete best_solution;
+            best_solution = new Solution(solution);
+            journal->AppendBestSolution(
+                accepted_global, best_solution->GetCost()
+            );
+        }
+            
         if (solution->GetCost() <= cost + temp) {  // Solution gets accepted
             c++;
             accepted_global++;
