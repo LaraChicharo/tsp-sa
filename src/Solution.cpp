@@ -2,7 +2,6 @@
 
 using namespace std;
 
-
 AncestryData::AncestryData(
     double parent_cost,
     double parent_sum,
@@ -41,6 +40,8 @@ Solution::Solution(Solution* solution) {
     ssum = CalculateSum(sequence);
     cost = CalculateCost(ssum);
 }
+
+Solution::~Solution() {}
 
 AncestryData* Solution::GetAncestry() {
     return ancestry;

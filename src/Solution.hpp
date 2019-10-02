@@ -94,6 +94,8 @@ class Solution {
         /// @param solution instance to copy.
         Solution(Solution* solution);
 
+        ~Solution();
+
         /// @brief Returns the sequence associated with this solution.
         std::vector<int> GetSequence();
         /// @brief Transforms this solution into a random neighbour solution.

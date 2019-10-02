@@ -28,7 +28,8 @@ Solution* WorldBuilder::BuildFirstSolution(int seed) const {
     shuffle(
         new_sequence.begin(),
         new_sequence.end(),
-        default_random_engine(seed));
+        default_random_engine(seed)
+    );
     Solution* first_solution = new Solution(new_sequence, metrologist);
     return first_solution;
 }

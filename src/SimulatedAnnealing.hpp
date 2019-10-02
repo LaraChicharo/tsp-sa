@@ -52,9 +52,9 @@ class SimulatedAnnealing {
         /// variable is updated.
         /// @return A pair, the first number is the accepted ratio
         /// of the batch and the second is the last solution computed.
-        std::pair<double, Solution*> ComputeBatch(
+        double ComputeBatch(
             Solution* solution,
-            Solution* best_solution
+            Solution** best_solution
         );
         /// @brief Writes info on the solutions obtained to a file
         /// in the form of points.

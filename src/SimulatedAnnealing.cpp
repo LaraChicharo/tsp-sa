@@ -18,24 +18,21 @@ SimulatedAnnealing::SimulatedAnnealing(
 
 SimulatedAnnealing::~SimulatedAnnealing() {
     delete journal;
+    delete initial_solution;
 }
 
 Solution* SimulatedAnnealing::TresholdAccepting() {
     double p = 0;
     Solution* best_solution = new Solution(initial_solution);
     Solution* solution = initial_solution;
-    while (this->temperature.BiggerThanZero()) {
+    while (temperature.BiggerThanZero()) {
         double q = DBL_MAX;
         while (p <= q) {
             q = p;
-            pair<double, Solution*> mpair = ComputeBatch(
-                solution, best_solution);
-            p = mpair.first;
-            solution = mpair.second;
+            p = ComputeBatch(solution, &best_solution);
         }
         temperature.Decrease();
     }
-    delete initial_solution;
     return best_solution;
 }
 
@@ -48,8 +45,8 @@ Solution* SimulatedAnnealing::TresholdAcceptingSweep() {
     return best;
 }
 
-pair<double, Solution*> SimulatedAnnealing::ComputeBatch(
-    Solution* solution, Solution* best_solution
+double SimulatedAnnealing::ComputeBatch(
+    Solution* solution, Solution** best_solution
 ) {
     int iteration_batch = 0;
     int c = 0;
@@ -61,12 +58,12 @@ pair<double, Solution*> SimulatedAnnealing::ComputeBatch(
             solution->MorphIntoNeighbour(true);
         else
             solution->MorphIntoNeighbour(false);
-
-        if (solution->GetCost() < best_solution->GetCost()) {
-            delete best_solution;
-            best_solution = new Solution(solution);
+        
+        if (solution->GetCost() < (*best_solution)->GetCost()) {
+            delete *best_solution;
+            *best_solution = new Solution(solution);
             journal->AppendBestSolution(
-                accepted_global, best_solution->GetCost()
+                accepted_global, (*best_solution)->GetCost()
             );
         }
             
@@ -80,7 +77,7 @@ pair<double, Solution*> SimulatedAnnealing::ComputeBatch(
         } else
             solution->MorphBack();
     }
-    return make_pair(r / c, solution);
+    return r / c;
 }
 
 void SimulatedAnnealing::WriteToJournalFiles() {
