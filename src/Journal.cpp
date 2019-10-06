@@ -4,7 +4,8 @@ using namespace std;
 
 Journal::Journal(int int_seed): EXT(".dat") {
     string seed = to_string(int_seed);
-    base_filename = seed + "-journal-";
+    string FOLDER = "plots/";
+    base_filename = FOLDER + seed + "-journal-";
 }
 
 void Journal::AppendAcceptedSolution(int accepted, double solution_cost) {
