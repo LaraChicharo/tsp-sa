@@ -179,7 +179,8 @@ bool Solution::Sweep() {
 }
 
 void Solution::HardSweep() {
-    while (Sweep());
+    long long count = 0;
+    while (Sweep() && count++ < 5e6);
 }
 
 double Solution::GetCost() {
