@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 from random import randint
 
-n = 2017  # number of seeds
-m = n * 10  # range of seeds [1, m]
+n = 100  # number of seeds
+m = n * 20 # range of seeds [1, m]
 
 used = [False] * (m + 4)
 

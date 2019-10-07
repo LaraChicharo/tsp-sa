@@ -9,6 +9,7 @@ Clean:
 ## Run
 #### Bulk run seeds
     main <sequence file> <seeds file>
+Note that *sequence file* and *seeds file* need to specify the number of elements they contain and then declare those elements separated by spaces.  
 Output will go to standard output.
 #### Plot a single seed
     main <sequence file> -p <seed>
